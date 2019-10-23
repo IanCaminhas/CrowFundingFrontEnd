@@ -25,9 +25,9 @@
     <div class="containter-fluid card-register mx-auto mt-5 text-white ">
 
         <!-- Page Content -->
-        <h1>Nova Instituições</h1>
+        <h1>Nova Instituição</h1>
         <hr style="border-color: white;">
-        <p>Insira corretamente todos os dados da Instituição</p>
+        <p class="text-center">Insira corretamente todos os dados da Instituição</p>
 
 
         <form class="needs-validation" novalidate>
@@ -139,70 +139,47 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-5 mb-3">
-                <label for="validationCustomAgencia">Rua</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-                  </div>
-                  <input type="text" class="form-control" id="validationCustomAgencia" name="agencia"
-                    aria-describedby="inputGroupPrepend" required>
+            <div class="col-md-3 mb-3">
+                <label for="validationCustomAgencia">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
                   <div class="valid-feedback">
                     Parece bom!
                   </div>
                   <div class="invalid-feedback">
                     Digite um E-mail.
                   </div>
-                </div>
               </div>
-              <div class="col-md-2 mb-3">
-                  <label for="validationCustomAgencia">Número</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-                    </div>
-                    <input type="text" class="form-control" id="validationCustomAgencia" name="agencia"
-                      aria-describedby="inputGroupPrepend" required>
+              <div class="col-md-3 mb-3">
+                  <label for="validationCustomAgencia">Bairro</label>
+                      <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
                     <div class="valid-feedback">
                       Parece bom!
                     </div>
                     <div class="invalid-feedback">
                       Digite um E-mail.
                     </div>
-                  </div>
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="validationCustomAgencia">Logradouro</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-                      </div>
-                      <input type="text" class="form-control" id="validationCustomAgencia" name="agencia"
-                        aria-describedby="inputGroupPrepend" required>
+                <div class="col-md-3 mb-3">
+                    <label for="validationCustomAgencia">Bairro</label>
+                        <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
                       <div class="valid-feedback">
                         Parece bom!
                       </div>
                       <div class="invalid-feedback">
                         Digite um E-mail.
                       </div>
-                    </div>
                   </div>
                 <div class="col-md-3 mb-3">
                     <label for="validationCustomAgencia">Bairro</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-                      </div>
-                      <input type="text" class="form-control" id="validationCustomAgencia" name="agencia"
-                        aria-describedby="inputGroupPrepend" required>
+                        <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
                       <div class="valid-feedback">
                         Parece bom!
                       </div>
                       <div class="invalid-feedback">
                         Digite um E-mail.
                       </div>
-                    </div>
                   </div>
+
           </div>
           <button class="btn btn-primary" id="btnCadastrar" type="submit">Cadastrar</button>
         </form>
@@ -216,17 +193,9 @@
   <!-- Core plugin JavaScript-->
   <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Page level plugin JavaScript-->
-  <script src="../../vendor/chart.js/Chart.min.js"></script>
-  <script src="../../vendor/datatables/jquery.dataTables.js"></script>
-  <script src="../../vendor/datatables/dataTables.bootstrap4.js"></script>
-
   <!-- Custom scripts for all pages-->
   <script src="../../js/sb-admin.min.js"></script>
 
-  <!-- Demo scripts for this page-->
-  <script src="../../js/demo/datatables-demo.js"></script>
-  <script src="../../js/demo/chart-area-demo.js"></script>
   
   </body>
 
@@ -255,9 +224,11 @@
 <script>
   // Cadastrar turma no sistema
 
+
+
   $('#btnCadastrar').click(function () {
 
-    var url = '/CadastrarInstituicao/';
+    var url = 'http://localhost:8080/instituicoes/';
 
     var nome = $('#nomeInstituicao').val();
     var cpnj = $('#cnpj').val();
@@ -271,19 +242,18 @@
     $.ajax({
       url: url,
       method: 'POST',
-      data: {
-        'nome': nome,
-        'cpnj': cpnj,
-        'telefone': telefone,
-        'email': email,
-        'responsavel': responsavel,
-        'descricao': descricao,
-        'conta': conta,
-        'agencia': agencia
+      headers: {
+            'Content-Type': 'application/json',
+        },
+      dataType: 'json',
+      crossDomain: true,
+      cache: false,
+      data: {  
+        nome: 'adasda'
       },
-      async: false
     }).done(function (result) {
-      
+        
+
       // EXIBIR MODAL OU ALERT?
 
     });
