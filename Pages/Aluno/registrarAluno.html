@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>CrowFunding - Nova Instituição</title>
+  <title>CrowFunding - Novo Aluno</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -25,27 +25,27 @@
     <div class="containter-fluid card-register mx-auto mt-5 text-white ">
 
         <!-- Page Content -->
-        <h1>Nova Instituição</h1>
+        <h1>Novo Aluno</h1>
         <hr style="border-color: white;">
-        <p class="text-center">Insira corretamente todos os dados da Instituição</p>
+        <p class="text-center">Insira corretamente todos os dados do Aluno</p>
 
 
         <form class="needs-validation" novalidate>
           <div class="form-row">
             <div class="col-md-12 mb-3">
-              <label for="nomeInstituicao">Nome da Instituição</label>
-              <input type="text" class="form-control" id="nomeInstituicao" name="nome" placeholder="Nome da Instituição"
+              <label for="nomeInstituicao">Nome do Aluno</label>
+              <input type="text" class="form-control" id="nomeAluno" name="nome" placeholder="Nome da Aluno"
                 required>
               <div class="valid-feedback">
                 Parece bom!
               </div>
               <div class="invalid-feedback">
-                Digite o Nome da Instituição.
+                Digite o Nome do Aluno.
               </div>
             </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationCustom02">CPNJ</label>
-              <input type="text" class="form-control" id="validationCustom02" name="cnpj" placeholder="CPNJ" required>
+            <div class="col-md-5 mb-3">
+              <label for="cpf">CPF</label>
+              <input type="text" class="form-control" id="cpf" name="cpj" placeholder="CPF" required>
               <div class="valid-feedback">
                 Parece bom!
               </div>
@@ -69,7 +69,23 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-3 mb-3">
+              <label for="validationCustomConta">Renda per capta</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend">R$</span>
+                </div>
+                <input type="text" class="form-control" id="validationCustomConta" name="rendaPerCapta"
+                  aria-describedby="inputGroupPrepend" required>
+                <div class="valid-feedback">
+                  Parece bom!
+                </div>
+                <div class="invalid-feedback">
+                  Digite o valor da renda.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-3">
               <label for="validationCustomEmail">E-mail</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -85,21 +101,11 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="validationCustom03">Responsável</label>
-              <input type="text" class="form-control" name="responsavel" id="validationCustom03"
-                placeholder="Responsável" required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite o nome do Responsável.
-              </div>
-            </div>
+
             <div class="col-md-12 mb-3">
-              <label for="validationCustom04">Descrição</label>
+              <label for="validationCustom04">Descrição do perfil</label>
               <textarea type="text" class="form-control" id="validationCustom04" name="descricao"
-                placeholder="Descreva a instituição com poucas palavras" required></textarea>
+                placeholder="Descreva seu perfil com poucas palavras" required></textarea>
               <div class="valid-feedback">
                 Parece bom!
               </div>
@@ -107,78 +113,63 @@
                 A descrição da instituição é obrigatória.
               </div>
             </div>
-            <div class="col-md-6 mb-3">
-              <label for="validationCustomConta">Conta</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">CC</span>
-                </div>
-                <input type="text" class="form-control" id="validationCustomConta" name="conta"
-                  aria-describedby="inputGroupPrepend" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite um E-mail.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="validationCustomAgencia">Agência</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-                </div>
-                <input type="text" class="form-control" id="validationCustomAgencia" name="agencia"
-                  aria-describedby="inputGroupPrepend" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite um E-mail.
-                </div>
-              </div>
-            </div>
+
+          </div>
+          <h3 class="text-center">Dados de Moradia</h3>
+          <hr style="border-color: white;">
+          <div class="form-row">  
             <div class="col-md-3 mb-3">
-                <label for="validationCustomAgencia">Bairro</label>
-                    <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
+                <label for="validationCustomAgencia">Rua</label>
+                    <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" required>
                   <div class="valid-feedback">
                     Parece bom!
                   </div>
                   <div class="invalid-feedback">
-                    Digite um E-mail.
+                    Digite o nome da sua rua.
                   </div>
               </div>
               <div class="col-md-3 mb-3">
+                <label for="validationCustomAgencia">Numero</label>
+                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Número" required>
+                  <div class="valid-feedback">
+                    Parece bom!
+                  </div>
+                  <div class="invalid-feedback">
+                    Digite um número.
+                  </div>
+              </div>
+              <div class="col-md-6 mb-3">
                   <label for="validationCustomAgencia">Bairro</label>
-                      <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
+                      <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
                     <div class="valid-feedback">
                       Parece bom!
                     </div>
                     <div class="invalid-feedback">
-                      Digite um E-mail.
+                      Digite o bairro.
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationCustomAgencia">Bairro</label>
-                        <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
+
+                <div class="col-md-6 mb-3">
+                    <label for="validationCustomAgencia">Complemento</label>
+                        <input type="text" class="form-control" id="bairro" name="complemento" placeholder="Complemento" required>
                       <div class="valid-feedback">
                         Parece bom!
                       </div>
                       <div class="invalid-feedback">
-                        Digite um E-mail.
+                        Digite o Complemento.
                       </div>
                   </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationCustomAgencia">Bairro</label>
-                        <input type="text" class="form-control" id="bairro" name="nome" placeholder="Bairro" required>
+                  <div class="col-md-6 mb-3">
+                    <label for="validationCustomAgencia">Logradouro</label>
+                        <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro" required>
                       <div class="valid-feedback">
                         Parece bom!
                       </div>
                       <div class="invalid-feedback">
-                        Digite um E-mail.
+                        Digite o Logradouro.
                       </div>
                   </div>
+                </div>
                   <button class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
           </div>
          
