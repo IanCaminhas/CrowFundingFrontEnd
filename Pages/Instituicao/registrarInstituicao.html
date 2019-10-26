@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationCustom02">CPNJ</label>
-              <input type="text" class="form-control" id="validationCustom02" name="cnpj" placeholder="CPNJ" required>
+              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CPNJ" required>
               <div class="valid-feedback">
                 Parece bom!
               </div>
@@ -54,12 +54,12 @@
               </div>
             </div>
             <div class="col-md-4 mb-3">
-              <label for="validationCustomTelefone">Telefone</label>
+              <label for="telefone">Telefone</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">+55</span>
                 </div>
-                <input type="text" class="form-control" id="validationCustomTelefone" name="telefone"
+                <input type="text" class="form-control" id="telefone" name="telefone"
                   placeholder="Telefone" aria-describedby="inputGroupPrepend" required>
                 <div class="valid-feedback">
                   Parece bom!
@@ -70,12 +70,12 @@
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="validationCustomEmail">E-mail</label>
+              <label for="email">E-mail</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">@</span>
                 </div>
-                <input type="text" class="form-control" id="validationCustomEmail" name="email" placeholder="E-mail"
+                <input type="text" class="form-control" id="email" name="email" placeholder="E-mail"
                   aria-describedby="inputGroupPrepend" required>
                 <div class="valid-feedback">
                   Parece bom!
@@ -86,8 +86,8 @@
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="validationCustom03">Responsável</label>
-              <input type="text" class="form-control" name="responsavel" id="validationCustom03"
+              <label for="responsavel">Responsável</label>
+              <input type="text" class="form-control" name="responsavel" id="responsavel"
                 placeholder="Responsável" required>
               <div class="valid-feedback">
                 Parece bom!
@@ -97,8 +97,8 @@
               </div>
             </div>
             <div class="col-md-12 mb-3">
-              <label for="validationCustom04">Descrição</label>
-              <textarea type="text" class="form-control" id="validationCustom04" name="descricao"
+              <label for="descricao">Descrição</label>
+              <textarea type="text" class="form-control" id="descricao" name="descricao"
                 placeholder="Descreva a instituição com poucas palavras" required></textarea>
               <div class="valid-feedback">
                 Parece bom!
@@ -108,34 +108,34 @@
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="validationCustomConta">Conta</label>
+              <label for="conta">Conta</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">CC</span>
                 </div>
-                <input type="text" class="form-control" id="validationCustomConta" name="conta"
+                <input type="text" class="form-control" id="conta" name="conta"
                   aria-describedby="inputGroupPrepend" required>
                 <div class="valid-feedback">
                   Parece bom!
                 </div>
                 <div class="invalid-feedback">
-                  Digite um E-mail.
+                  Digite a conta bancária.
                 </div>
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="validationCustomAgencia">Agência</label>
+              <label for="agencia">Agência</label>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">Ag</span>
                 </div>
-                <input type="text" class="form-control" id="validationCustomAgencia" name="agencia"
+                <input type="text" class="form-control" id="agencia" name="agencia"
                   aria-describedby="inputGroupPrepend" required>
                 <div class="valid-feedback">
                   Parece bom!
                 </div>
                 <div class="invalid-feedback">
-                  Digite um E-mail.
+                  Digite a agência bancária.
                 </div>
               </div>
             </div>
@@ -166,7 +166,7 @@
           <hr style="border-color: white;">
           <div class="form-row">  
             <div class="col-md-3 mb-3">
-                <label for="validationCustomAgencia">Rua</label>
+                <label for="rua">Rua</label>
                     <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" required>
                   <div class="valid-feedback">
                     Parece bom!
@@ -176,8 +176,8 @@
                   </div>
               </div>
               <div class="col-md-3 mb-3">
-                <label for="validationCustomAgencia">Numero</label>
-                    <input type="text" class="form-control" id="numero" name="numero" placeholder="Número" required>
+                <label for="numeroPropriedade">Numero</label>
+                    <input type="text" class="form-control" id="numeroPropriedade" name="numeroPropriedade" placeholder="Número" required>
                   <div class="valid-feedback">
                     Parece bom!
                   </div>
@@ -186,7 +186,7 @@
                   </div>
               </div>
               <div class="col-md-6 mb-3">
-                  <label for="validationCustomAgencia">Bairro</label>
+                  <label for="bairro">Bairro</label>
                       <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
                     <div class="valid-feedback">
                       Parece bom!
@@ -197,8 +197,8 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label for="validationCustomAgencia">Complemento</label>
-                        <input type="text" class="form-control" id="bairro" name="complemento" placeholder="Complemento" required>
+                    <label for="complemento">Complemento</label>
+                        <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" required>
                       <div class="valid-feedback">
                         Parece bom!
                       </div>
@@ -207,7 +207,7 @@
                       </div>
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label for="validationCustomAgencia">Logradouro</label>
+                    <label for="logradouro">Logradouro</label>
                         <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro" required>
                       <div class="valid-feedback">
                         Parece bom!
@@ -261,19 +261,24 @@
 
   $('#btnCadastrar').click(function () {
     var url = 'http://localhost:8080/instituicoes';
- /*
-   
+ 
+    var data = { 
+      nome: $('#nomeInstituicao').val(),
+      cnpj: $('#cnpj').val(),
+      telefone: $('#telefone').val(),
+      email: $('#email').val(),
+      responsavel: $('#responsavel').val(),
+      descricao: $('#descricao').val(),
+      conta: $('#conta').val(),
+      agencia: $('#agencia').val(),
+      rua: $('#rua').val(),
+      bairro: $('#bairro').val(),
+      numeroPropriedade:$('#numeroPropriedade').val(),
+      complemento:$('#complemento').val(),
+      logradouro: $('#logradouro').val(),
+      senha: $('#senha').val()
 
-    var nome = $('#nomeInstituicao').val();
-    var cpnj = $('#cnpj').val();
-    var telefone = $('#telefone').val();
-    var email = $('#email').val();
-    var responsavel = $('#resposavel').val();
-    var descricao = $('#descricao').val();
-    var conta = $('#conta').val();
-    var agencia = $('#agencia').val();
-*/
-    var data = { nome: "teste"};
+    };
     var type = "json";
     call(url, type, data);
     
