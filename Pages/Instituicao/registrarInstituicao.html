@@ -263,6 +263,7 @@
     var url = 'http://localhost:8080/instituicoes';
  
     var data = { 
+      //class(model) instituicao
       nome: $('#nomeInstituicao').val(),
       cnpj: $('#cnpj').val(),
       telefone: $('#telefone').val(),
@@ -271,12 +272,13 @@
       descricao: $('#descricao').val(),
       conta: $('#conta').val(),
       agencia: $('#agencia').val(),
+      senha: $('#senha').val(),
+      //class endereço
       rua: $('#rua').val(),
       bairro: $('#bairro').val(),
       numeroPropriedade:$('#numeroPropriedade').val(),
       complemento:$('#complemento').val(),
       logradouro: $('#logradouro').val(),
-      senha: $('#senha').val()
 
     };
     var type = "json";
@@ -291,7 +293,7 @@
     headers: {
       'Content-Type': 'application/json'
     },
-		data : (data) ? JSON.stringify(data) : "",
+		data : JSON.stringify(data),
 		dataType : type
 	});
 
