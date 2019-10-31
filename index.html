@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -9,13 +9,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Login</title>
+  <title>CrowFunding - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+
+  <!-- Logos -->
+  <link href="css/logos.css" rel="stylesheet">
 
 </head>
 
@@ -23,12 +28,15 @@
 
 <div class="container-fluid">
     <div class="card card-login mx-auto mt-5">
-        <div class="card-header text-center">Aluno</div>
-        <div class="card-body">
+        <div class="card-header corFundoLoginHeader text-center">Faça seu login</div>
+        <div class="card-body corFundoLoginBody">
+          <div class="text-center">
+            <img  style="width: 15rem;" src="img/logo_donate.png" alt="logo">
+          </div>
           <form>
               <div class="form-group">
-                  <label for="exampleFormControlSelect1">Tipo de usuáiro</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <label for="inputTipoUser">Tipo de usuáiro</label>
+                  <select class="form-control" id="inputTipoUser">
                     <option value="1">Aluno</option>
                     <option value="2">Instituição</option>
                     <option value="" selected disabled>Selecione</option>
@@ -46,22 +54,36 @@
                 <label for="inputPassword">Password</label>
               </div>
             </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="remember-me">
-                  Lembrar senha
-                </label>
-              </div>
-            </div>
             <a class="btn btn-primary btn-block" href="index.html">Login</a>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="register.html">Registrar nova conta</a>
-            <a class="d-block small" href="forgot-password.html">Esqueceu sua senha?</a>
           </div>
         </div>
       </div>
+
+      <!-- Inicio logos-->
+
+      <div class="container-fluid"></div>
+      <br>
+        <h4 class="text-white text-center">Parceiros</h4>
+        <br>
+         <section class="customer-logos slider">
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/3d-box-logo_1103-876.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/3d-box-logo_1103-876.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/blue-tech-logo_1103-822.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/colors-curl-logo-template_23-2147536125.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/abstract-cross-logo_23-2147536124.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/football-logo-background_1195-244.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/background-of-spots-halftone_1035-3847.jpg"></div>
+            <div class="slide"><img class="rounded-circle" src="https://image.freepik.com/free-vector/retro-label-on-rustic-background_82147503374.jpg"></div>
+         </section>
+      </div>
+
+      <!-- Fim logos-->
+
+
+
 </div>
 
   <!-- Bootstrap core JavaScript-->
@@ -70,6 +92,11 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Logos -->
+  <script src="js/logos.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
 
 </body>
 
