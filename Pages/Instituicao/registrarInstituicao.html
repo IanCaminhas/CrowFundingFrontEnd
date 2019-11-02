@@ -22,215 +22,218 @@
 
 <body class="bg-dark">
 
-    <div class="containter-fluid card-register mx-auto mt-5 text-white ">
+  <div class="containter-fluid card-register mx-auto mt-5 text-white ">
 
-        <!-- Page Content -->
-        <h1>Nova Instituição</h1>
-        <hr style="border-color: white;">
-        <p class="text-center">Insira corretamente todos os dados da Instituição</p>
+    <!-- Page Content -->
+    <h1>Nova Instituição</h1>
+    <hr style="border-color: white;">
+    <p class="text-center">Insira corretamente todos os dados da Instituição</p>
 
 
-        <form class="needs-validation" novalidate>
-          <div class="form-row">
-            <div class="col-md-12 mb-3">
-              <label for="nomeInstituicao">Nome da Instituição</label>
-              <input type="text" class="form-control" id="nomeInstituicao" name="nome" placeholder="Nome da Instituição"
-                required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite o Nome da Instituição.
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationCustom02">CPNJ</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CPNJ" required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite o CPNJ.
-              </div>
-            </div>
-            <div class="col-md-4 mb-3">
-              <label for="telefone">Telefone</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">+55</span>
-                </div>
-                <input type="text" class="form-control" id="telefone" name="telefone"
-                  placeholder="Telefone" aria-describedby="inputGroupPrepend" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite um telefone.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="email">E-mail</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">@</span>
-                </div>
-                <input type="text" class="form-control" id="email" name="email" placeholder="E-mail"
-                  aria-describedby="inputGroupPrepend" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite um E-mail.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="responsavel">Responsável</label>
-              <input type="text" class="form-control" name="responsavel" id="responsavel"
-                placeholder="Responsável" required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite o nome do Responsável.
-              </div>
-            </div>
-            <div class="col-md-12 mb-3">
-              <label for="descricao">Descrição</label>
-              <textarea type="text" class="form-control" id="descricao" name="descricao"
-                placeholder="Descreva a instituição com poucas palavras" required></textarea>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                A descrição da instituição é obrigatória.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="conta">Conta</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">CC</span>
-                </div>
-                <input type="text" class="form-control" id="conta" name="conta"
-                  aria-describedby="inputGroupPrepend" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite a conta bancária.
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="agencia">Agência</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-                </div>
-                <input type="text" class="form-control" id="agencia" name="agencia"
-                  aria-describedby="inputGroupPrepend" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite a agência bancária.
-                </div>
-              </div>
-            </div>
-            
-            <div class="col-md-6 mb-3">
-              <label for="senha">Digite uma senha</label>
-                  <input type="text" class="form-control" id="senha" name="senha" placeholder="Senha" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  Digite uma senha válida.
-                </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="confirmaSenha">Confirme sua senha</label>
-                  <input type="text" class="form-control" id="confirmaSenha" name="confirmaSenha" placeholder="Confirme sua senha" required>
-                <div class="valid-feedback">
-                  Parece bom!
-                </div>
-                <div class="invalid-feedback">
-                  As senhas não são iguais.
-                </div>
-            </div>
-
+    <form class="needs-validation" novalidate>
+      <div class="form-row">
+        <div class="col-md-12 mb-3">
+          <label for="nomeInstituicao">Nome da Instituição</label>
+          <input type="text" class="form-control" id="nomeInstituicao" name="nome" placeholder="Nome da Instituição"
+            required>
+          <div class="valid-feedback">
+            Parece bom!
           </div>
-          <h3 class="text-center">Dados de Moradia</h3>
-          <hr style="border-color: white;">
-          <div class="form-row">  
-            <div class="col-md-3 mb-3">
-                <label for="rua">Rua</label>
-                    <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" required>
-                  <div class="valid-feedback">
-                    Parece bom!
-                  </div>
-                  <div class="invalid-feedback">
-                    Digite o nome da sua rua.
-                  </div>
-              </div>
-              <div class="col-md-3 mb-3">
-                <label for="numeroPropriedade">Numero</label>
-                    <input type="text" class="form-control" id="numeroPropriedade" name="numeroPropriedade" placeholder="Número" required>
-                  <div class="valid-feedback">
-                    Parece bom!
-                  </div>
-                  <div class="invalid-feedback">
-                    Digite um número.
-                  </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                  <label for="bairro">Bairro</label>
-                      <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
-                    <div class="valid-feedback">
-                      Parece bom!
-                    </div>
-                    <div class="invalid-feedback">
-                      Digite o bairro.
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label for="complemento">Complemento</label>
-                        <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento" required>
-                      <div class="valid-feedback">
-                        Parece bom!
-                      </div>
-                      <div class="invalid-feedback">
-                        Digite o Complemento.
-                      </div>
-                  </div>
-                  <div class="col-md-6 mb-3">
-                    <label for="logradouro">Logradouro</label>
-                        <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro" required>
-                      <div class="valid-feedback">
-                        Parece bom!
-                      </div>
-                      <div class="invalid-feedback">
-                        Digite o Logradouro.
-                      </div>
-                  </div>
-                </div>
-                  <button class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
+          <div class="invalid-feedback">
+            Digite o Nome da Instituição.
           </div>
-         
-        </form>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="validationCustom02">CPNJ</label>
+          <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="CPNJ" required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite o CPNJ.
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="telefone">Telefone</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">+55</span>
+            </div>
+            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone"
+              aria-describedby="inputGroupPrepend" required>
+            <div class="valid-feedback">
+              Parece bom!
+            </div>
+            <div class="invalid-feedback">
+              Digite um telefone.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="email">E-mail</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">@</span>
+            </div>
+            <input type="text" class="form-control" id="email" name="email" placeholder="E-mail"
+              aria-describedby="inputGroupPrepend" required>
+            <div class="valid-feedback">
+              Parece bom!
+            </div>
+            <div class="invalid-feedback">
+              Digite um E-mail.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="responsavel">Responsável</label>
+          <input type="text" class="form-control" name="responsavel" id="responsavel" placeholder="Responsável"
+            required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite o nome do Responsável.
+          </div>
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="descricao">Descrição</label>
+          <textarea type="text" class="form-control" id="descricao" name="descricao"
+            placeholder="Descreva a instituição com poucas palavras" required></textarea>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            A descrição da instituição é obrigatória.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="conta">Conta</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">CC</span>
+            </div>
+            <input type="text" class="form-control" id="conta" name="conta" aria-describedby="inputGroupPrepend"
+              required>
+            <div class="valid-feedback">
+              Parece bom!
+            </div>
+            <div class="invalid-feedback">
+              Digite a conta bancária.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="agencia">Agência</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">Ag</span>
+            </div>
+            <input type="text" class="form-control" id="agencia" name="agencia" aria-describedby="inputGroupPrepend"
+              required>
+            <div class="valid-feedback">
+              Parece bom!
+            </div>
+            <div class="invalid-feedback">
+              Digite a agência bancária.
+            </div>
+          </div>
+        </div>
 
-    </div>
-  
+        <div class="col-md-6 mb-3">
+          <label for="senha">Digite uma senha</label>
+          <input type="text" class="form-control" id="senha" name="senha" placeholder="Senha" required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite uma senha válida.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="confirmaSenha">Confirme sua senha</label>
+          <input type="text" class="form-control" id="confirmaSenha" name="confirmaSenha"
+            placeholder="Confirme sua senha" required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            As senhas não são iguais.
+          </div>
+        </div>
 
-   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+      </div>
+      <h3 class="text-center">Dados de Moradia</h3>
+      <hr style="border-color: white;">
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="rua">Rua</label>
+          <input type="text" class="form-control" id="rua" name="rua" placeholder="Rua" required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite o nome da sua rua.
+          </div>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="numeroPropriedade">Numero</label>
+          <input type="text" class="form-control" id="numeroPropriedade" name="numeroPropriedade" placeholder="Número"
+            required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite um número.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="bairro">Bairro</label>
+          <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro" required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite o bairro.
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="complemento">Complemento</label>
+          <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Complemento"
+            required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite o Complemento.
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="logradouro">Logradouro</label>
+          <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro" required>
+          <div class="valid-feedback">
+            Parece bom!
+          </div>
+          <div class="invalid-feedback">
+            Digite o Logradouro.
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
+  </div>
+
+  </form>
+
+  </div>
 
 
-  
-  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+</body>
 
 </html>
 <script>
@@ -261,8 +264,8 @@
 
   $('#btnCadastrar').click(function () {
     var url = 'http://localhost:8080/instituicoes';
- 
-    var data = { 
+
+    var data = {
       //class(model) instituicao
       nome: $('#nomeInstituicao').val(),
       cnpj: $('#cnpj').val(),
@@ -276,37 +279,37 @@
       //class endereço
       rua: $('#rua').val(),
       bairro: $('#bairro').val(),
-      numeroPropriedade:$('#numeroPropriedade').val(),
-      complemento:$('#complemento').val(),
+      numeroPropriedade: $('#numeroPropriedade').val(),
+      complemento: $('#complemento').val(),
       logradouro: $('#logradouro').val(),
 
     };
     var type = "json";
     call(url, type, data);
-    
+
   });
 
   function call(url, type, data) {
-	var request = $.ajax({
-		url : url,
-		method : "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-		data : JSON.stringify(data),
-		dataType : type
-	});
+    var request = $.ajax({
+      url: url,
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(data),
+      dataType: type
+    });
 
-	request.done(function(resp) {
-		console.log(resp);
-	});
+    request.done(function (resp) {
+      console.log(resp);
+    });
 
-	request.fail(function(jqXHR, textStatus) {
-		console.log("Request failed: " + textStatus);
-	});
-};
+    request.fail(function (jqXHR, textStatus) {
+      console.log("Request failed: " + textStatus);
+    });
+  };
 
-  
+
 
 
 
