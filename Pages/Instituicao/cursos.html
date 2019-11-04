@@ -84,9 +84,6 @@
       </li>
     </ul>
 
-
-
-
     <!-- Fim Modal -->
 
     <div id="content-wrapper">
@@ -297,4 +294,60 @@
       });
     }, false);
   })();
+</script>
+
+
+<script>
+ $('#btnCadastrar').click(function () {
+      event.preventDefault();
+  var url = 'http://localhost:8080/instituicoes/cadastrar';
+
+
+   var data = { 
+      //dados aluno
+    nome: $('#nomeInstituicao').val(),
+    cnpj: $('#cnpj').val(),
+    telefone: $('#telefone').val(),
+    email: $('#email').val(),
+    responsavel: $('#responsavel').val(),
+    descricao: $('#descricao').val(),
+    conta: $('#conta').val(),
+    agencia: $('#agencia').val(),
+    senha: $('#senha').val(),
+
+    //endereco instituicao
+    rua: $('#rua').val(),
+    bairro: $('#bairro').val(),
+    numeroPropriedade: $('#numeroPropriedade').val(),
+    complemento:$('#complemento').val() ,
+    logradouro:$('#logradouro').val() ,
+
+  };
+  call(url, data);
+  
+});
+
+function call(url, data) {
+var request = $.ajax({
+  url : url,
+  async: false,
+  method : "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  data : JSON.stringify(data),
+});
+
+request.done(function(resp) {
+  sessionStorage.setItem('instituicao', resp);
+  window.location.replace("indexInstituicao.html");
+
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+  console.log("Request failed: " + textStatus);
+});
+};
+
 </script>
