@@ -227,90 +227,15 @@
 
   </div>
 
-
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
 
 </body>
 
 </html>
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function () {
-    'use strict';
-    window.addEventListener('load', function () {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function (form) {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>
-
-<script>
-  // Cadastrar turma no sistema
+    
+    <script>
+    
+   
+    </script>
 
 
-
-  $('#btnCadastrar').click(function () {
-    var url = 'http://localhost:8080/instituicoes';
-
-    var data = {
-      //class(model) instituicao
-      nome: $('#nomeInstituicao').val(),
-      cnpj: $('#cnpj').val(),
-      telefone: $('#telefone').val(),
-      email: $('#email').val(),
-      responsavel: $('#responsavel').val(),
-      descricao: $('#descricao').val(),
-      conta: $('#conta').val(),
-      agencia: $('#agencia').val(),
-      senha: $('#senha').val(),
-      //class endereço
-      rua: $('#rua').val(),
-      bairro: $('#bairro').val(),
-      numeroPropriedade: $('#numeroPropriedade').val(),
-      complemento: $('#complemento').val(),
-      logradouro: $('#logradouro').val(),
-
-    };
-    var type = "json";
-    call(url, type, data);
-
-  });
-
-  function call(url, type, data) {
-    var request = $.ajax({
-      url: url,
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(data),
-      dataType: type
-    });
-
-    request.done(function (resp) {
-      console.log(resp);
-    });
-
-    request.fail(function (jqXHR, textStatus) {
-      console.log("Request failed: " + textStatus);
-    });
-  };
-
-
-
-
-
-</script>
