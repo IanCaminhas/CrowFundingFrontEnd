@@ -359,3 +359,29 @@
     }, false);
   })();
 </script>
+
+
+<script>
+window.addEventListener('load', function(){
+
+  
+  $.get("http://localhost:8080/instituicoes/cursos/35", function(data){
+    
+    data.forEach(function(valor, indice) {
+        console.log(valor['nome']);
+
+
+
+    });
+
+
+    //<option value="1">Excel Avançado</option>
+
+    
+});
+
+});
+
+
+
+</script>

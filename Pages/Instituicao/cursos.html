@@ -300,28 +300,13 @@
 <script>
  $('#btnCadastrar').click(function () {
       event.preventDefault();
-  var url = 'http://localhost:8080/instituicoes/cadastrar';
-
-
-   var data = { 
-      //dados aluno
-    nome: $('#nomeInstituicao').val(),
-    cnpj: $('#cnpj').val(),
-    telefone: $('#telefone').val(),
-    email: $('#email').val(),
-    responsavel: $('#responsavel').val(),
-    descricao: $('#descricao').val(),
-    conta: $('#conta').val(),
-    agencia: $('#agencia').val(),
-    senha: $('#senha').val(),
-
-    //endereco instituicao
-    rua: $('#rua').val(),
-    bairro: $('#bairro').val(),
-    numeroPropriedade: $('#numeroPropriedade').val(),
-    complemento:$('#complemento').val() ,
-    logradouro:$('#logradouro').val() ,
-
+        var url = 'http://localhost:8080/instituicoes/cursos';
+        var data = { 
+        //dados curso
+        nome: $('#nome').val(),
+        valor: $('#valor').val(),
+        ementa: $('#ementa').val(), 
+        idInstituicao: JSON.parse(sessionStorage.getItem('instituicao'))['id'], 
   };
   call(url, data);
   
@@ -339,9 +324,7 @@ var request = $.ajax({
 });
 
 request.done(function(resp) {
-  sessionStorage.setItem('instituicao', resp);
-  window.location.replace("indexInstituicao.html");
-
+console.log('foi');
 
 });
 
