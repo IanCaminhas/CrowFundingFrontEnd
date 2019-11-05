@@ -85,8 +85,6 @@
     </ul>
 
 
-
-
     <!-- Fim Modal -->
 
     <div id="content-wrapper">
@@ -112,7 +110,7 @@
         </div>
 
         <!-- Inicio Modal -->
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        <div class="modal fade bd-example-modal-lg" id="modalTurma" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -128,10 +126,8 @@
                   <div class="form-row">
                     <div class="col-md-12 mb-3">
                       <label for="numeroVagas">Curso</label>
-                      <select type="number" class="form-control" id="numeroVagas" name="numeroVagas"
+                      <select type="number" class="form-control" id="idCursos" name="numeroVagas"
                         placeholder="Quantidade de vagas" required>
-                        <option disabled selected>Selecione um curso</option>
-                        <option value="1">Excel Avançado</option>
                       </select>
                       <div class="valid-feedback">
                         Parece bom!
@@ -296,25 +292,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../vendor/jquery/jquery.min.js"></script>
@@ -363,22 +340,64 @@
 
 <script>
 window.addEventListener('load', function(){
-
+  let idInstituicao = JSON.parse(sessionStorage.getItem('instituicao'))['id'];
+  let url = `http://localhost:8080/instituicoes/cursos/${idInstituicao}`;
   
-  $.get("http://localhost:8080/instituicoes/cursos/35", function(data){
+  $.get(url, function(data){
     
-    data.forEach(function(valor, indice) {
-        console.log(valor['nome']);
+    data.forEach(function(json) {
 
-
+      $('#idCursos').append(`<option value=${json['id']}>${json['nome']}</option>`);
 
     });
-
-
-    //<option value="1">Excel Avançado</option>
-
     
 });
+
+
+$('#btnCadastrar').click(function () {
+      event.preventDefault();
+      let url = 'http://localhost:8080/instituicoes/turmas';
+
+
+      var data = { 
+         numeroVagas:$('#numeroVagas').val(),
+         horarioInicio:$('#horaInicio').val() ,
+         horarioTermino: $('#horaTermino').val() ,
+         dataInicio:$('#dataInicio').val() ,
+         previsaoTermino:$('#dataTermino').val() ,
+         idCurso: $("#idCursos option:selected").val(),
+
+  };
+  call(url, data);
+  
+});
+
+function call(url, data) {
+var request = $.ajax({
+  url : url,
+  async: false,
+  method : "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  data : JSON.stringify(data),
+});
+
+request.done(function(resp) {
+  $("#modalTurma").modal('toggle');
+  
+
+});
+
+request.fail(function(jqXHR, textStatus) {
+  console.log("Request failed: " + textStatus);
+});
+};
+
+
+
+
+
 
 });
 

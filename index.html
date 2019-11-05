@@ -54,7 +54,7 @@
                 <label for="inputPassword">Password</label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.html">Login</a>
+            <a class="btn btn-primary btn-block" id="btnLogin" href="index.html">Login</a>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="register.html">Registrar nova conta</a>
@@ -96,3 +96,25 @@
 </body>
 
 </html>
+
+<script>
+
+$('#btnLogin').click(function () {
+  event.preventDefault();
+  let tipoUsuario = $("#inputTipoUser option:selected").text();
+  
+  if(tipoUsuario=="Instituição"){
+    console.log("i");
+  }else if(tipoUsuario=="Aluno"){
+    console.log("a");
+  }
+
+
+
+
+});
+
+
+
+
+</script>
