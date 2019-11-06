@@ -84,6 +84,26 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-md-3 mb-3">
+              <label for="rendaPerCapita">Data nascimento</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend">R$</span>
+                </div>
+                <input type="date" class="form-control" id="dataNascimento" name="rendaPerCapta"
+                  aria-describedby="inputGroupPrepend" required>
+                <div class="valid-feedback">
+                  Parece bom!
+                </div>
+                <div class="invalid-feedback">
+                  Digite a sua data de nascimento
+                </div>
+              </div>
+            </div>
+
+
+
             <div class="col-md-12 mb-3">
               <label for="email">E-mail</label>
               <div class="input-group">
@@ -99,7 +119,13 @@
                   Digite um E-mail.
                 </div>
               </div>
+
             </div>
+
+            
+
+
+
 
             <div class="col-md-12 mb-3">
               <label for="descricaoPerfil">Descrição do perfil</label>
@@ -201,7 +227,7 @@
 
   <script>
 $('#btnCadastrar').click(function () {
-    
+    event.preventDefault();
   
     var url = 'http://localhost:8080/alunos/cadastrar';
 
@@ -211,7 +237,7 @@ $('#btnCadastrar').click(function () {
       nome: $('#nomeAluno').val(),
       telefone: $('#telefone').val(),
       email: $('#email').val(),
-      dataNascimento: '12/12/1995',
+      dataNascimento: $('#dataNascimento').val(),
       cpf: $('#cpf').val(),
       descricaoPerfil: $('#descricaoPerfil').val(),      
       rendaPerCapita: $('#rendaPerCapita').val(),
@@ -225,7 +251,7 @@ $('#btnCadastrar').click(function () {
       logradouro: $('#logradouro').val()
       
     };
-    call(url, type, data);
+    call(url, data);
     
   });
 
@@ -240,8 +266,12 @@ $('#btnCadastrar').click(function () {
     data : JSON.stringify(data)
   });
 
-  request.success(function(resp) {
-    console.log(resp);
+  request.done(function(resp) {
+    sessionStorage.setItem('aluno', resp);
+  window.location.replace("indexAluno.html");
+
+
+
   });
 
   request.fail(function(jqXHR, textStatus) {
@@ -250,19 +280,6 @@ $('#btnCadastrar').click(function () {
 };
 
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>
 <script>

@@ -60,7 +60,7 @@ function callInstituicao(url, data) {
     
     request.done(function(resp) {
       sessionStorage.setItem('aluno', resp);
-      window.location.replace("http://localhost/CrowFundingFrontEnd/Pages/Instituicao/indexInstituicao.html");      
+      window.location.replace("Pages/Aluno/indexAluno.html");      
     
     });
     
