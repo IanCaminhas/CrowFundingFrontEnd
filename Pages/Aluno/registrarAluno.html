@@ -18,6 +18,10 @@
   <!-- Custom styles for this template-->
   <link href="../../css/sb-admin.css" rel="stylesheet">
 
+  <!-- JQUERY-->
+  <script src="../../js/jquery.min.js"></script>
+
+
 </head>
 
 <body class="bg-dark">
@@ -42,7 +46,7 @@
                 Digite o Nome do Aluno.
               </div>
             </div>
-            <div class="col-md-5 mb-3">
+            <div class="col-md-3 mb-3">
               <label for="cpf">CPF</label>
               <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" required>
               <div class="valid-feedback">
@@ -58,7 +62,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroupPrepend">+55</span>
                 </div>
-                <input type="text" class="form-control" id="telefone" name="telefone"
+                <input type="text" class="form-control phone_with_ddd" id="telefone" name="telefone"
                   placeholder="Telefone" aria-describedby="inputGroupPrepend" required>
                 <div class="valid-feedback">
                   Parece bom!
@@ -68,7 +72,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3 mb-3">
+            <div class="col-md-2 mb-3">
               <label for="rendaPerCapita">Renda per capta</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -89,7 +93,7 @@
               <label for="rendaPerCapita">Data nascimento</label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="inputGroupPrepend">R$</span>
+                  <span class="input-group-text" id="inputGroupPrepend"><i class="fas fa-calendar fa-fw"></i></span>
                 </div>
                 <input type="date" class="form-control" id="dataNascimento" name="rendaPerCapta"
                   aria-describedby="inputGroupPrepend" required>
@@ -121,12 +125,6 @@
               </div>
 
             </div>
-
-            
-
-
-
-
             <div class="col-md-12 mb-3">
               <label for="descricaoPerfil">Descrição do perfil</label>
               <textarea type="text" class="form-control" id="descricaoPerfil" name="descricaoPerfil"
@@ -140,7 +138,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="senha">Digite uma senha</label>
-                  <input type="text" class="form-control" id="senha" name="senha" placeholder="Senha" required>
+                  <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
                 <div class="valid-feedback">
                   Parece bom!
                 </div>
@@ -150,7 +148,8 @@
             </div>
             <div class="col-md-6 mb-3">
               <label for="confirmaSenha">Confirme sua senha</label>
-                  <input type="text" class="form-control" id="confirmaSenha" name="confirmaSenha" placeholder="Confirme sua senha" required>
+                  <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" required>
+                  <span class="text-danger" id="invalidFeedbackSenha"></span>
                 <div class="valid-feedback">
                   Parece bom!
                 </div>
@@ -222,7 +221,8 @@
 
     </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+
+  <script src="../../js/jquery.mask.min.js"></script> 
   </body>
 
   <script>
@@ -303,3 +303,44 @@ $('#btnCadastrar').click(function () {
   })();
 </script>
 
+<script>
+
+$(document).ready(function(){
+  $('#invalidFeedbackSenha').hide();
+})
+
+$('#confirmarSenha').change(function(){
+  let senha = $('#senha').val();
+  let confirmarSenha = $('#confirmarSenha').val();
+
+  if( senha != confirmarSenha ){    
+    $('#invalidFeedbackSenha').show().html("As senhas não coincidem");
+  }
+  else{
+    
+    $('#invalidFeedbackSenha').html("As senhas são iguais").prop('class', 'text-success');
+    setTimeout(5000, function(){
+      $('#invalidFeedbackSenha').hide();
+    })
+  }
+})
+
+</script>
+
+
+<script type="text/javascript">
+//Mascara para telefone
+  $(document).ready(function(){
+
+  var SPMaskBehavior = function (val) {
+    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+  },
+  spOptions = {
+    onKeyPress: function(val, e, field, options) {
+    field.mask(SPMaskBehavior.apply({}, arguments), options);
+    }
+  };
+  $("#telefone").mask(SPMaskBehavior, spOptions);	
+
+  })
+</script>
