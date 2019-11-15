@@ -143,10 +143,73 @@
                                         <td>R$ 85.00</td>
                                         <td>13/11/2019</td>
                                         <td>13/12/2019</td>
-                                        <td><button>ALou</button></td>
+                                        <td>
+                                            <div class="text-center">
+                                                <p>
+                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                                        Novo
+                                                        curso
+                                                    </button>
+                                                </p>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="modal fade bd-example-modal-lg" id="modalCurso" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCurso">Mais Informações</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Instituição: XXXXXXXXXXXX</label>
+                                                    <hr>
+                                                </div>
+                                                
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Endereço: XXXXXXXXXXXX</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Curso: XXXXXXXXXXXX</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="valor">Valor do curso: R$ 85.00</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Data de inicio: DD/MM/YYYY</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Data de conclusão: DD/MM/YYYY</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Horário de inicio das aulas: HH:MM</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="nome">Horário de termino das aulas: HH:MM</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="ementa">Ementa do Curso: XXXXXXXXXXXXXXXXXXXXXXXXX</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" id="btnCadastrar">Aplicar para vaga</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -166,7 +229,6 @@
 
         </div>
         <!-- /.content-wrapper -->
-
     </div>
     <!-- /#wrapper -->
     <!-- Scroll to Top Button-->
