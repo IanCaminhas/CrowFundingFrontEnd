@@ -235,7 +235,7 @@ $('#btnCadastrar').click(function () {
       nome: $('#nomeAluno').val(),
       telefone: $('#telefone').val(),
       email: $('#email').val(),
-      dataNascimento: $('#dataNascimento').val(),
+      dataNascimento: getData($('input[type=date]').val()),
       cpf: $('#cpf').val(),
       descricaoPerfil: $('#descricaoPerfil').val(),      
       rendaPerCapita: $('#rendaPerCapita').val(),
@@ -252,6 +252,18 @@ $('#btnCadastrar').click(function () {
     call(url, data);
     
   });
+
+  function getData(data){
+    let date = new Date(data);
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    return [day, month, year].join('/');
+
+  }
+
+
+
 
   function call(url, data) {
   var request = $.ajax({

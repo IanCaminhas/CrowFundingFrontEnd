@@ -32,7 +32,8 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0 text-white bolder text-center">
+        <div
+            class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0 text-white bolder text-center">
             Aluno
         </div>
 
@@ -41,7 +42,7 @@
 
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
+                    aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user-circle fa-fw"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -115,6 +116,7 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th hidden>Id turma</th>
                                         <th>Nome do Curso</th>
                                         <th>Instituição</th>
                                         <th>Turno</th>
@@ -124,61 +126,34 @@
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Nome do Curso</th>
-                                        <th>Instituição</th>
-                                        <th>Turno</th>
-                                        <th>Valor do Curso</th>
-                                        <th>Data de Inicio</th>
-                                        <th>Data de Conclusão</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>Excel Avançado</td>
-                                        <td>Pontifícia Universidade Católica de Minas Gerais</td>
-                                        <td>Noite</td>
-                                        <td>R$ 85.00</td>
-                                        <td>13/11/2019</td>
-                                        <td>13/12/2019</td>
-                                        <td>
-                                            <div class="text-center">
-                                                <p>
-                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                                                        Novo
-                                                        curso
-                                                    </button>
-                                                </p>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tbody id="table-cursos">
+
                                 </tbody>
                             </table>
-                            <div class="modal fade bd-example-modal-lg" id="modalCurso" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-                                 aria-hidden="true">
+                            <div class="modal fade bd-example-modal-lg" id="modalCurso" tabindex="-1" role="dialog"
+                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="modalCurso">Mais Informações</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Fechar">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-row">
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Instituição: XXXXXXXXXXXX</label>
+                                                    <label for="instituicao">Instituição: XXXXXXXXXXXX</label>
                                                     <hr>
                                                 </div>
-                                                
+
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Endereço: XXXXXXXXXXXX</label>
+                                                    <label for="endereco">Endereço: XXXXXXXXXXXX</label>
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Curso: XXXXXXXXXXXX</label>
+                                                    <label for="curso">Curso: XXXXXXXXXXXX</label>
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
@@ -186,27 +161,28 @@
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Data de inicio: DD/MM/YYYY</label>
+                                                    <label for="dtInicio">Data de inicio: DD/MM/YYYY</label>
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Data de conclusão: DD/MM/YYYY</label>
+                                                    <label for="dtConclusao">Data de conclusão: DD/MM/YYYY</label>
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Horário de inicio das aulas: HH:MM</label>
+                                                    <label for="horaInicio">Horário de inicio das aulas: HH:MM</label>
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="nome">Horário de termino das aulas: HH:MM</label>
+                                                    <label for="horaTermino">Horário de termino das aulas: HH:MM</label>
                                                     <hr>
                                                 </div>
                                                 <div class="col-md-12 mb-3">
-                                                    <label for="ementa">Ementa do Curso: XXXXXXXXXXXXXXXXXXXXXXXXX</label>
+                                                    <label for="ementa">Ementa do Curso:
+                                                        XXXXXXXXXXXXXXXXXXXXXXXXX</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" id="btnCadastrar">Aplicar para vaga</button>
+                                        <button class="btn btn-primary" id="btnCadastrar">Matricular</button>
                                     </div>
                                 </div>
                             </div>
@@ -283,40 +259,54 @@
 
 
 <script>
-    $('#btnCadastrar').click(function () {
-        event.preventDefault();
-        var url = 'http://localhost:8080/instituicoes/cursos';
-        var data = {
-            //dados curso
-            nome: $('#nome').val(),
-            valor: $('#valor').val(),
-            ementa: $('#ementa').val(),
-            idInstituicao: JSON.parse(sessionStorage.getItem('instituicao'))['id'],
-        };
-        call(url, data);
+    window.addEventListener('load', function () {
+        let url = `http://localhost:8080/turmas/turmasDisponiveis`;
+        let tabela = document.querySelector('#table-cursos');
+
+        let tr = document.createElement('tr');
+
+        $.get(url, function (data) {
+
+            data.forEach(function (json) {
+
+                tr.innerHTML = ` 
+            <td>${json['idTurma']}</td>
+            <td>${json['nomeCurso']}</td>
+            <td>${json['nomeInstituicao']}</td>
+            <td>Noite</td>
+            <td>${json['valorCurso']}</td>
+            <td>${json['dataInicio']}</td>
+            <td>${json['dataTermino']}</td>
+            <td>
+            <div class="text-center">
+            <p>
+            <button type="button" id="modal-detalhes-curso" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                Matricular
+            </button>
+            </p>
+            </div>
+            </td>        
+  `;
+            tabela.appendChild(tr);
+
+
+            });
+
+        });
 
     });
 
-    function call(url, data) {
-        var request = $.ajax({
-            url: url,
-            async: false,
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: JSON.stringify(data),
-        });
-
-        request.done(function (resp) {
-            $("#modalCurso").modal('hide');
+</script>
 
 
-        });
+<script>
 
-        request.fail(function (jqXHR, textStatus) {
-            console.log("Request failed: " + textStatus);
-        });
-    };
+$('#modal-detalhes-curso').click(function () {
+    
+
+
+});
+
+
 
 </script>

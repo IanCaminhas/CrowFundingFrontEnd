@@ -196,11 +196,6 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <tr>
-                    <td>Excel Avançado</td>
-                    <td>R$ 85.00</td>
-                    <td><a href="#">Apagar</a></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -281,7 +276,7 @@
 <script>
  $('#btnCadastrar').click(function () {
       event.preventDefault();
-        var url = 'http://localhost:8080/instituicoes/cursos';
+        var url = 'http://localhost:8080/cursos/adiciona';
         var data = { 
         //dados curso
         nome: $('#nome').val(),

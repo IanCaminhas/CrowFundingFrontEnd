@@ -253,14 +253,6 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <tr>
-                    <td>Excel Avançado</td>
-                    <td>08:00 PM</td>
-                    <td>10:00 PM</td>
-                    <td>10/12/2019</td>
-                    <td>10/01/2020</td>
-                    <td><a href="#">Apagar</a></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -341,7 +333,7 @@
 <script>
 window.addEventListener('load', function(){
   let idInstituicao = JSON.parse(sessionStorage.getItem('instituicao'))['id'];
-  let url = `http://localhost:8080/instituicoes/cursos/${idInstituicao}`;
+  let url = `http://localhost:8080/cursos/${idInstituicao}`;
   
   $.get(url, function(data){
     
@@ -356,21 +348,32 @@ window.addEventListener('load', function(){
 
 $('#btnCadastrar').click(function () {
       event.preventDefault();
-      let url = 'http://localhost:8080/instituicoes/turmas';
+      let url = 'http://localhost:8080/turmas/adiciona';
 
 
       var data = { 
          numeroVagas:$('#numeroVagas').val(),
          horarioInicio:$('#horaInicio').val() ,
          horarioTermino: $('#horaTermino').val() ,
-         dataInicio:$('#dataInicio').val() ,
-         previsaoTermino:$('#dataTermino').val() ,
+         dataInicio: getData($('#dataInicio').val()) ,
+         previsaoTermino: getData($('#dataTermino').val()) ,
          idCurso: $("#idCursos option:selected").val(),
 
   };
   call(url, data);
   
 });
+
+function getData(data){
+    let date = new Date(data);
+    day = date.getDate();
+    month = date.getMonth() + 1;
+    year = date.getFullYear();
+    return [day, month, year].join('/');
+
+  }
+
+
 
 function call(url, data) {
 var request = $.ajax({
