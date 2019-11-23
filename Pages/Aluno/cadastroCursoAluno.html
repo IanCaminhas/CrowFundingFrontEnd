@@ -113,23 +113,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th hidden>Id turma</th>
-                                        <th>Nome do Curso</th>
-                                        <th>Instituição</th>
-                                        <th>Turno</th>
-                                        <th>Valor do Curso</th>
-                                        <th>Data de Inicio</th>
-                                        <th>Data de Conclusão</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-cursos">
-
-                                </tbody>
-                            </table>
+                           <div id = "tabela"></div>
                             <div class="modal fade bd-example-modal-lg" id="modalCurso" tabindex="-1" role="dialog"
                                 aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
@@ -259,24 +243,70 @@
 
 
 <script>
-    window.addEventListener('load', function () {
+
+$('#dataTable').dataTable( {
+   
+} );
+
+</script>
+
+
+
+
+<script>
+
+
+
+    function createTable(){
+
+        let tabela =` <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th hidden>Id turma</th>
+                                        <th hidden>endereco</th>
+                                        <th hidden>curso</th>
+                                        <th hidden>valor</th>
+                                        <th>Nome do Curso</th>
+                                        <th>Instituição</th>
+                                        <th>Turno</th>
+                                        <th>Valor do Curso</th>
+                                        <th>Data de Inicio</th>
+                                        <th>Data de Conclusão</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-cursos">
+                                    
+                                </tbody>
+                            </table>`;
+                            return tabela;
+    }
+
+     jQuery(function ($) {
+
+
+        $("#tabela").html(createTable());
+
+
         let url = `http://localhost:8080/turmas/turmasDisponiveis`;
         let tabela = document.querySelector('#table-cursos');
-
         let tr = document.createElement('tr');
 
         $.get(url, function (data) {
 
-            data.forEach(function (json) {
+            let dados = JSON.parse(data);
+            
+
+            dados.forEach(function(d, index){
 
                 tr.innerHTML = ` 
-            <td>${json['idTurma']}</td>
-            <td>${json['nomeCurso']}</td>
-            <td>${json['nomeInstituicao']}</td>
+            <td hidden>${d.idTurma}</td>
+            <td>${d.nomeCurso}</td>
+            <td>${d.nomeInstituivao}</td>
             <td>Noite</td>
-            <td>${json['valorCurso']}</td>
-            <td>${json['dataInicio']}</td>
-            <td>${json['dataTermino']}</td>
+            <td>${d.valorCurso}</td>
+            <td>${d.dataInicio}</td>
+            <td>${d.dataConclusao}</td>
             <td>
             <div class="text-center">
             <p>
@@ -288,24 +318,41 @@
             </td>        
   `;
             tabela.appendChild(tr);
-
-
-            });
-
+            
         });
+    });
+
+    $('#dataTable tbody').on( 'click','tr' ,function () {
+        
+        var table = $('#dataTable').DataTable();
+
+        let linhaSelecionada= table.row(this).index();
+        let data = table.rows(linhaSelecionada).data();
+        
+        let info = data[0];
+        let nome = info[0];
+
+        alert(nome);
+    });
 
     });
+
+   
+
+
+
+
 
 </script>
 
 
 <script>
 
-$('#modal-detalhes-curso').click(function () {
+  
+
+  
+
     
-
-
-});
 
 
 
