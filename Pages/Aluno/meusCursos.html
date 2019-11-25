@@ -58,35 +58,51 @@
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="/Pages/Aluno/.html">
+        <a class="nav-link" href="indexAluno.html">
           <i class="fas fa-fw fa-home"></i>
           <span>Inicio</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Pages/Aluno/meusCursos.html">
-          <i class="fas fa-fw fa-archive"></i>
-          <span>Meus Cursos</span>
+          <li class="nav-item active" >
+        <a class="nav-link" href="meusCursos.html">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Meus Cursos</span>
         </a>
       </li>
       <li class="nav-item">
+          <li class="nav-item active" >
           <a class="nav-link" href="cadastroCursoAluno.html">
-            <i class="fas fa-fw fa-list"></i>
+              <i class="fas fa-sign-in-alt"></i>
             <span>Matricular</span>
           </a>
         </li>
+      
+        <li class="nav-item">
+            <li class="nav-item active" >
+            <a href="../../index.html" class="nav-link"  onclick="encerrarSessao()">
+              <i class="fas fa-sign-out-alt"></i>
+              <span>sair</span>
+            </a>
+          </li>
+
     </ul>
 
     <div id="content-wrapper">
 
       <div class="container-fluid">
+      
+          <!-- Breadcrumbs-->
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="indexAluno.html">Inicio</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a href="#">meus cursos</a>
+              </li>
+            </ol>
+    
 
-        <!-- Breadcrumbs
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item active">
-            <a href="#">Inicio</a>
-          </li>
-        </ol>-->
 <div class="text-center">
 <h1 class="display-4">Meus Cursos</h1>
 </div>
@@ -97,66 +113,12 @@
     Cursos</div>
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Nome do Curso</th>
-            <th>Instituição</th>
-            <th>Status</th>
-            <th>Mais informações</th>
-          </tr>
-        </thead>
-        </tfoot>
-        <tbody>
-          <tr>
-            <td>...........</td>
-            <td>...........</td>
-            <td>..........</td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">+</button></td>
-          </tr>
-        </tbody>
-      </table>
+     <div id="tabela"></div>
     </div>
   </div>
   <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
 <!-- Modal grande -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="container">
-            <div class="row">
-              <div class="col">
-                <h4> <span>Nome do Curso:</span> <span id="nomeCurso"></span> </h4>
-              </div>
-              <div class="col">
-                <h4> <span>Nome da Instituição:</span> <span id="nomeInstituicao"></span> </h4>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h4> <span>Hora de Inicio:</span> <span id="horaInicio"></span> </h4>
-              </div>
-              <div class="col">
-                <h4> <span>Hora de Termino:</span> <span id="horaTermino"></span> </h4>
-              </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                  <h4> <span>Data de Inicio:<span> <span id="dataInicio"></span> </h4>
-                </div>
-                <div class="col">
-                  <h4> <span>Data de Termino:</span> <span id="dataTermino"></span> </h4>
-                </div>
-              </div>
-              <div class="text-center">
-                <h4> <span> Ementa </span> </h4>
-                <span id="Ementa"></span>
-                </div>
-          </div>
-      </div>
-    </div>
-  </div>
 
       </div>
       <!-- /.container-fluid -->
@@ -200,6 +162,9 @@
     </div>
   </div>
 
+  <div id="espacoModal"></div>
+
+
   <!-- Bootstrap core JavaScript-->
   <script src="../../vendor/jquery/jquery.min.js"></script>
   <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -223,3 +188,217 @@
 </body>
 
 </html>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+
+  $('#dataTable').DataTable( {
+
+});
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+
+
+
+
+
+
+<script>
+jQuery(function ($) {
+
+$("#tabela").html(createTable());
+let idAluno = JSON.parse(sessionStorage.getItem('aluno'))['id'];
+let url = `http://localhost:8080/matriculas/matriculas_aluno/${idAluno}`;
+let tabela = document.querySelector('#table-matriculas');
+let tr = document.createElement('tr');
+
+
+
+$.get(url, function (data) {
+    //alert(data);
+    //let dados = JSON.parse(data);
+    
+    data.forEach(function(d, index){
+
+        tr.innerHTML = ` 
+    <td hidden>${d.ementa}</td>
+    <td hidden>${d.dataTermino}</td>
+    <td hidden>${d.dataInicio}</td>
+    <td hidden>${d.horaTermino}</td>
+    <td hidden>${d.horaInicio}</td>
+    <td>${d.nomeCurso}</td>
+    <td>${d.nomeInstituicao}</td>
+    <td>${d.status}</td>
+    <td>${d.valorCurso}</td>
+    <td>${d.valorArrecadado}</td>
+
+    <td>
+    <div class="text-center">
+    <p>
+    <button type="button" id="modal-detalhes-curso" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+        mais
+    </button>
+    </td>     
+`;
+   tabela.appendChild(tr);
+    
+});
+$('#dataTable').DataTable( {});
+
+
+});
+
+$('#dataTable tbody').on( 'click','tr' ,function () {
+
+var table = $('#dataTable').DataTable();
+
+let linhaSelecionada= table.row(this).index();
+let data = table.rows(linhaSelecionada).data();
+
+let infoMatricula = data[0];
+
+let ementa = infoMatricula[0];
+let dtTermino = infoMatricula[1];
+let dtInicio = infoMatricula[2];
+let hTermino = infoMatricula[3];
+let hInicio = infoMatricula[4];
+let nomeCurso = infoMatricula[5];
+let nomeInstituicao = infoMatricula[6];
+let status = infoMatricula[7];
+let valorCurso = infoMatricula[8];
+let valorArrecadado = infoMatricula[9];
+
+var objModal = {
+  dtTermino: dtTermino,
+  dtInicio: dtInicio,
+  hTermino: hTermino,
+  hInicio:hInicio,
+  nomeCurso:nomeCurso,
+  nomeInstituicao:nomeInstituicao,
+  ementa:ementa
+}
+
+$('#espacoModal').append(createModalDetalhes(objModal));
+
+
+});
+
+});
+
+
+function createTable(){
+  let tabela= ` <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th hidden>ementa</th>
+            <th hidden>data termino</th>
+            <th hidden>data inicio</th>
+            <th hidden>hora termino</th>
+            <th hidden>hora inicio</th>
+            <th>Nome do Curso</th>
+            <th>Instituição</th>
+            <th>Status</th>
+            <th>Valor do curso</th>
+            <th>Valor arrecadado</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody id="table-matriculas">
+        </tbody>
+      </table>`;
+      return tabela;
+
+}
+
+
+function createModalDetalhes(objMatricula){
+
+  let modal = `<div class="modal fade bd-example-modal-lg" id="modalMatricula" tabindex="-1" role="dialog"
+                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCurso">Mais Informações</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="curso">Curso: ${objMatricula.nomeCurso} </label>
+                                                    <hr>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="endereco">Instituicao: ${objMatricula.nomeInstituicao} </label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="curso">Hora Inicio:${objMatricula.hInicio} </label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="valor">Hora Termino: ${objMatricula.hTermino}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dtInicio">Data de inicio:${objMatricula.dtInicio} </label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dtConclusao">Data de conclusão: ${objMatricula.dtTermino} </label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="ementa">Ementa do Curso:${objMatricula.ementa}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+`;
+return modal;
+}
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</script>
+

@@ -57,6 +57,11 @@
           <span>Lista de Pessoas</span>
         </a>
       </li>
+      <li class="nav-item active">
+          <a class="nav-link" href="../../index.html">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Sair</span>
+          </a>
     </ul>
 
     <div id="content-wrapper">
@@ -72,43 +77,9 @@
     <i class="fas fa-user"></i>
     Alunos com aguardando doações</div>
   <div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-              <th>ID</th>
-            <th>Nome do Aluno</th>
-            <th>Nome do Curso</th>
-            <th>Instituição</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-              <th>ID</th>
-            <th>Nome do Aluno</th>
-            <th>Nome do Curso</th>
-            <th>Instituição</th>
-            <th>Ações</th>
-          </tr>
-        </tfoot>
-        <tbody>
-          <tr>
-            <td>2</td>
-            <td>Pedro Joaquim da Silva</td>
-            <td>Excel Avançado</td>
-            <td>PUC Minas</td>
-            <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doeAgora">Doar</button></td>
-          </tr>
-          <tr>
-              <td>3</td>
-              <td>Maria Joaquim da Silva</td>
-              <td>Excel Avançado</td>
-              <td>Una</td>
-              <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doeAgora">Doar</button></td>
-            </tr>
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <div id="tabela"></div>
+      </div>
     </div>
   </div>
   <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -158,89 +129,7 @@
   </div>
 
   <!-- Modal Doe-->
-<div class="modal fade bd-example-modal-lg" id="doeAgora" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Doar</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="row">
-          <div class="col-md-12 mb-3">
-            <label>Benificiado</label>
-            <input type="text" class="form-control" readonly/>
-          </div>
-          <div class="col-md-12 mb-3">
-            <label for="nomeInstituicao">Nome</label>
-            <input type="text" class="form-control" id="nome" name="nomeDoador" placeholder="Digite seu nome completo"
-              required>
-            <div class="valid-feedback">
-              Parece bom!
-            </div>
-            <div class="invalid-feedback">
-              Digite seu nome completo.
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="conta">Conta</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">CC</span>
-              </div>
-              <input type="text" class="form-control" id="conta" name="conta" aria-describedby="inputGroupPrepend"
-                required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite a conta bancária.
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="agencia">Agência</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">Ag</span>
-              </div>
-              <input type="text" class="form-control" id="agencia" name="agencia" aria-describedby="inputGroupPrepend"
-                required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite a agência bancária.
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Valor da doação</label>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroupPrepend">R$</span>
-              </div>
-              <input type="text" class="form-control" id="valor" name="valor" aria-describedby="inputGroupPrepend"
-                required>
-              <div class="valid-feedback">
-                Parece bom!
-              </div>
-              <div class="invalid-feedback">
-                Digite a Valor.
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Enviar</button>
-      </div>
-    </div>
-  </div>
-</div>
+  <div id="modalDoacao"></div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../vendor/jquery/jquery.min.js"></script>
@@ -266,3 +155,272 @@
 </body>
 
 </html>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+
+  $('#dataTable').DataTable( {
+
+});
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
+
+
+  <script>
+
+
+jQuery(function ($) {
+
+
+  $("#tabela").html(createTableDoacao());
+
+      let url = `http://localhost:8080/doacao/alunos`;
+        let tabela = document.querySelector('#table-alunos');
+        let tr = document.createElement('tr');
+
+        $.get(url, function (data) {
+            
+            let dados = JSON.parse(data);
+
+            dados.forEach(function(d, index){
+
+                tr.innerHTML = `
+            <td>${d.idAluno}</td>
+            <td>${d.nomeAluno}</td>
+            <td>${d.nomeCurso}</td>
+            <td>${d.nomeInstituicao}</td>
+            <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doeAgora">
+            Doar
+            </button>
+            </td>
+            <td hidden>${d.idTurma}</td>`;
+            tabela.appendChild(tr);
+
+
+          });
+
+          $('#dataTable').DataTable( {});
+    });
+
+
+    $('#dataTable tbody').on( 'click','tr' ,function () {
+    
+        
+      var table = $('#dataTable').DataTable();
+
+      let linhaSelecionada= table.row(this).index();
+      let data = table.rows(linhaSelecionada).data();
+
+      let infoDoacao = data[0];
+
+      let idAluno = infoDoacao[0];
+      let nomeAluno = infoDoacao[1];
+      let nomeCurso = infoDoacao[2];
+      let nomeInstituicao = infoDoacao[3];
+      let idTurma = infoDoacao[5];
+      
+
+      let objetoInfoModal = {
+        idAluno: idAluno,
+        nAluno: nomeAluno,
+        nomeCurso: nomeCurso,
+        nomeInstituicao: nomeInstituicao,
+        idTurma: idTurma
+    };
+
+        $('#modalDoacao').append(createModalDoacao(objetoInfoModal));
+
+  });
+
+  });
+
+  function createTableDoacao(){
+
+let table =`
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+            <th>ID</th>
+          <th>Nome do Aluno</th>
+          <th>Nome do Curso</th>
+          <th>Instituição</th>
+          <th>Ações</th>
+          <th hidden>Id Turma</th>
+        </tr>
+      </thead>
+      <tbody id="table-alunos">
+      </tbody>
+
+    </table>
+  `;
+   
+    return table;
+
+}
+
+
+function createModalDoacao(dados){
+
+  let modal = `<div class="modal fade bd-example-modal-lg" id="doeAgora" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Doar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="row">
+          <div class="col-md-12 mb-3">
+            <label>Benificiado</label>
+            <input type="text" value="${dados.nAluno}" class="form-control" readonly/>
+          </div>
+          <div class="col-md-12 mb-3">
+            <label for="nomeInstituicao">Nome</label>
+            <input type="text" class="form-control" id="nomeDoador" name="nomeDoador" placeholder="Digite seu nome completo"
+              required>
+            <div class="valid-feedback">
+              Parece bom!
+            </div>
+            <div class="invalid-feedback">
+              Digite seu nome completo.
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="conta">Conta</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">CC</span>
+              </div>
+              <input type="text" class="form-control" id="contaDoador" name="conta" aria-describedby="inputGroupPrepend"
+                required>
+              <div class="valid-feedback">
+                Parece bom!
+              </div>
+              <div class="invalid-feedback">
+                Digite a conta bancária.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="agencia">Agência</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">Ag</span>
+              </div>
+              <input type="text" class="form-control" id="agenciaDoador" name="agencia" aria-describedby="inputGroupPrepend"
+                required>
+              <div class="valid-feedback">
+                Parece bom!
+              </div>
+              <div class="invalid-feedback">
+                Digite a agência bancária.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="validationCustom02">Valor da doação</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend">R$</span>
+              </div>
+              <input type="text" class="form-control" id="valorDoacao" name="valor" aria-describedby="inputGroupPrepend"
+                required>
+              <div class="valid-feedback">
+                Parece bom!
+              </div>
+              <div class="invalid-feedback">
+                Digite a Valor.
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" onClick="fazerDoacao(event, ${dados.idAluno},${dados.idTurma} )" class="btn btn-primary">Enviar</button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+return modal;
+}
+
+
+function fazerDoacao(event, idAluno, idTurma){
+  event.preventDefault();
+  let nomeDoador = $('#nomeDoador').val(); 
+  let contaDoador = $('#contaDoador').val();
+  let agenciaDoador = $('#agenciaDoador').val();
+  let valorDoacao = $('#valorDoacao').val();
+
+  var url = 'http://localhost:8080/doacao/realizar_doacao';
+        let data = { 
+        //dados matricula]
+        valor:valorDoacao,
+        idTurma:idTurma,
+        idAluno:idAluno,
+        nomeDoador:nomeDoador,
+        agencia:agenciaDoador,
+        conta:contaDoador,
+        dataDoacao: getData()    
+  };
+        call(url, data);
+    }
+
+    function call(url, data) {
+
+        var request = $.ajax({
+
+        url : url,
+        async: false,
+        method : "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : JSON.stringify(data),
+        
+        });     
+
+        request.done(function(resp) {
+          $('#doeAgora').modal("hide");
+        });
+
+        request.fail(function(jqXHR, textStatus) {
+            console.log("Request failed: " + textStatus);
+        });
+}
+
+    function getData(){
+
+      let date = new Date();
+      day = date.getDate();
+      month = date.getMonth() + 1;
+      year = date.getFullYear();
+      return [day, month, year].join('/');
+}
+
+
+
+
+</script>

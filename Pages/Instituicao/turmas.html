@@ -58,31 +58,41 @@
 
     <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="indexInstituicao.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Inicio</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="cursos.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Cursos</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="turmas.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Turmas</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="alunos.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Alunos</span>
-        </a>
-      </li>
-    </ul>
+        <li class="nav-item active">
+          <a class="nav-link" href="indexInstituicao.html">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+            <li class="nav-item active" >
+          <a class="nav-link" href="cursos.html">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Cursos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+            <li class="nav-item active" >
+            <a class="nav-link" href="alunos.html">
+              <i class="fas fa-fw fa-list"></i>
+              <span>Alunos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+              <li class="nav-item active" >
+              <a class="nav-link" href="turmas.html">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Turmas</span>
+              </a>
+            </li>
+          <li class="nav-item">
+              <li class="nav-item active" >
+              <a href="../../index.html" class="nav-link"  onclick="encerrarSessao()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>sair</span>
+              </a>
+            </li>
+      </ul>
 
 
     <!-- Fim Modal -->
@@ -403,3 +413,11 @@ request.fail(function(jqXHR, textStatus) {
 
 
 </script>
+
+<script>
+    function encerrarSessao(){
+      sessionStorage.removeItem('instituicao');
+    
+    }
+    
+    </script>

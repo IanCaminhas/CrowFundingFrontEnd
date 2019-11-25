@@ -58,33 +58,50 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="sidebar navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="indexInstituicao.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Inicio</span>
+<!-- Sidebar -->
+<ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="indexAluno.html">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Inicio</span>
+          </a>
+        </li>
+        <li class="nav-item">
+                <li class="nav-item active" >
+          <a class="nav-link" href="meusCursos.html">
+                <i class="fas fa-fw fa-list"></i>
+                <span>Meus Cursos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+                <li class="nav-item active" >
+            <a class="nav-link" href="cadastroCursoAluno.html">
+                <i class="fas fa-sign-in-alt"></i>
+                    <span>Matricular</span>
+            </a>
+          </li>
+          <li class="nav-item">
+                <li class="nav-item active" >
+                <a href="../../index.html" class="nav-link"  onclick="encerrarSessao()">
+                    <i class="fas fa-sign-out-alt"></i>
+                  <span>sair</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cursos.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Cursos</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="turmas.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Turmas</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="alunos.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Perfil</span>
-                </a>
-            </li>
-        </ul>
-
+              </li>
+      </ul>
+  
+      <div id="content-wrapper">
+  
+        <div class="container-fluid">
+        
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="indexAluno.html">Inicio</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a href="#">cadastro curso</a>
+                </li>
+              </ol>
         <!-- Fim Modal -->
 
         <div id="content-wrapper">
@@ -94,10 +111,10 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="indexInstituicao.html">Inicio</a>
+                        <a href="indexAluno.html">Inicio</a>
                     </li>
                     <li class="breadcrumb-item active">
-                        <a href="#">Curso</a>
+                        <a href="#">cursos</a>
                     </li>
                 </ol>
 
@@ -114,63 +131,11 @@
                     <div class="card-body">
                         <div class="table-responsive">
                            <div id = "tabela"></div>
-                            <div class="modal fade bd-example-modal-lg" id="modalCurso" tabindex="-1" role="dialog"
-                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalCurso">Mais Informações</h5>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Fechar">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-row">
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="instituicao">Instituição: XXXXXXXXXXXX</label>
-                                                    <hr>
-                                                </div>
-
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="endereco">Endereço: XXXXXXXXXXXX</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="curso">Curso: XXXXXXXXXXXX</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="valor">Valor do curso: R$ 85.00</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="dtInicio">Data de inicio: DD/MM/YYYY</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="dtConclusao">Data de conclusão: DD/MM/YYYY</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="horaInicio">Horário de inicio das aulas: HH:MM</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="horaTermino">Horário de termino das aulas: HH:MM</label>
-                                                    <hr>
-                                                </div>
-                                                <div class="col-md-12 mb-3">
-                                                    <label for="ementa">Ementa do Curso:
-                                                        XXXXXXXXXXXXXXXXXXXXXXXXX</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-primary" id="btnCadastrar">Matricular</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
+                        <div id="espacoModal"></div>
+
+
+
                     </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
@@ -252,23 +217,79 @@ $('#dataTable').dataTable( {
 
 
 
-
 <script>
+    function createModalMatricula(obj){
+        let modal = `<div class="modal fade bd-example-modal-lg" id="modalMatricula" tabindex="-1" role="dialog"
+                                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCurso">Mais Informações</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-row">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="instituicao">Instituição: ${obj.nomeInstituicao}</label>
+                                                    <hr>
+                                                </div>
 
-
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="endereco">Endereço: ${obj.endereco}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="curso">Curso: ${obj.nomeCurso}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="valor">Valor do curso: ${obj.valorCurso}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dtInicio">Data de inicio: ${obj.dtInicio}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dtConclusao">Data de conclusão: ${obj.dtConclusao}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="horaInicio">Horário de inicio das aulas: ${obj.hInicio}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="horaTermino">Horário de termino das aulas: ${obj.hTermino}</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="ementa">Ementa do Curso:${obj.ementa}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" onclick="realizarMatricula(${obj.idTurma})" id="btnCadastrar">Matricular</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                        return modal;
+    }
 
     function createTable(){
-
         let tabela =` <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th hidden>Id turma</th>
+                                        <th hidden>IdTurma</th>
+                                        <th hidden>horaInicio</th>
+                                        <th hidden>horaTermino</th>
+                                        <th hidden>ementa</th>
                                         <th hidden>endereco</th>
-                                        <th hidden>curso</th>
-                                        <th hidden>valor</th>
                                         <th>Nome do Curso</th>
                                         <th>Instituição</th>
-                                        <th>Turno</th>
                                         <th>Valor do Curso</th>
                                         <th>Data de Inicio</th>
                                         <th>Data de Conclusão</th>
@@ -281,29 +302,22 @@ $('#dataTable').dataTable( {
                             </table>`;
                             return tabela;
     }
-
      jQuery(function ($) {
-
-
         $("#tabela").html(createTable());
-
-
         let url = `http://localhost:8080/turmas/turmasDisponiveis`;
         let tabela = document.querySelector('#table-cursos');
         let tr = document.createElement('tr');
-
         $.get(url, function (data) {
-
             let dados = JSON.parse(data);
-            
-
             dados.forEach(function(d, index){
-
                 tr.innerHTML = ` 
             <td hidden>${d.idTurma}</td>
+            <td hidden>${d.horarioInicio}</td>
+            <td hidden>${d.horarioTermino}</td>
+            <td hidden>${d.ementa}</td>
+            <td hidden>${d.endereco}</td>
             <td>${d.nomeCurso}</td>
-            <td>${d.nomeInstituivao}</td>
-            <td>Noite</td>
+            <td>${d.nomeInstituicao}</td>
             <td>${d.valorCurso}</td>
             <td>${d.dataInicio}</td>
             <td>${d.dataConclusao}</td>
@@ -320,40 +334,83 @@ $('#dataTable').dataTable( {
             tabela.appendChild(tr);
             
         });
-    });
+        $('#dataTable').DataTable( {});
 
+    });
     $('#dataTable tbody').on( 'click','tr' ,function () {
         
         var table = $('#dataTable').DataTable();
-
         let linhaSelecionada= table.row(this).index();
         let data = table.rows(linhaSelecionada).data();
         
-        let info = data[0];
-        let nome = info[0];
+        let infoMatricula = data[0];
+        let idTurma = infoMatricula[0];
+        let hInicio = infoMatricula[1];
+        let hTermino = infoMatricula[2];
+        let ementa = infoMatricula[3];
+        let endereco = infoMatricula[4];        
+        let nomeCurso = infoMatricula[5];
+        let nomeInstituicao = infoMatricula[6];
+        let valorCurso = infoMatricula[7];
+        let dtInicio = infoMatricula[8];
+        let dtConclusao = infoMatricula[9];
 
-        alert(nome);
+
+        var objTurma ={
+            idTurma: idTurma,
+            hInicio: hInicio,
+            hTermino: hTermino,
+            ementa: ementa,
+            nomeCurso:nomeCurso,
+            nomeInstituicao:nomeInstituicao,
+            valorCurso:valorCurso,
+            dtInicio: dtInicio,
+            dtConclusao: dtConclusao,
+            endereco: endereco
+
+        }
+
+        $('#espacoModal').append(createModalMatricula(objTurma));
+        
     });
-
     });
-
    
-
-
-
-
-
 </script>
 
 
 <script>
+    function realizarMatricula(turma){
+        event.preventDefault();
 
-  
+        var url = 'http://localhost:8080/matriculas/matricularAluno';
+        let data = { 
+        //dados matricula
+        idTurma: turma,
+        idAluno: JSON.parse(sessionStorage.getItem('aluno') || "[]")['id'],
+         };
+        call(url, data);
+    }
 
-  
+    function call(url, data) {
+        var request = $.ajax({
+        url : url,
+        async: false,
+        method : "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data : JSON.stringify(data),
+    });
 
-    
+        request.done(function(resp) {
+            $("#modalMatricula").modal('hide');
+    });
 
+        request.fail(function(jqXHR, textStatus) {
+            console.log("Request failed: " + textStatus);
+});
+}
 
 
 </script>
+
