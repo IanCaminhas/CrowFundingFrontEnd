@@ -130,6 +130,8 @@
 
   <!-- Modal Doe-->
   <div id="modalDoacao"></div>
+  <div id ="valor-invalido"></div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="../../vendor/jquery/jquery.min.js"></script>
@@ -201,11 +203,16 @@ jQuery(function ($) {
 
             dados.forEach(function(d, index){
 
+            if(d.valorArrecadado <d.valorCurso){
+
+          
                 tr.innerHTML = `
             <td>${d.idAluno}</td>
             <td>${d.nomeAluno}</td>
             <td>${d.nomeCurso}</td>
             <td>${d.nomeInstituicao}</td>
+            <td>${d.valorCurso}</td>
+            <td>${d.valorArrecadado}</td>
             <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#doeAgora">
             Doar
             </button>
@@ -213,6 +220,7 @@ jQuery(function ($) {
             <td hidden>${d.idTurma}</td>`;
             tabela.appendChild(tr);
 
+          }
 
           });
 
@@ -234,7 +242,9 @@ jQuery(function ($) {
       let nomeAluno = infoDoacao[1];
       let nomeCurso = infoDoacao[2];
       let nomeInstituicao = infoDoacao[3];
-      let idTurma = infoDoacao[5];
+      let valorCurso = infoDoacao[4];
+      let valorArrecadado = infoDoacao[5];
+      let idTurma = infoDoacao[7];
       
 
       let objetoInfoModal = {
@@ -242,7 +252,9 @@ jQuery(function ($) {
         nAluno: nomeAluno,
         nomeCurso: nomeCurso,
         nomeInstituicao: nomeInstituicao,
-        idTurma: idTurma
+        idTurma: idTurma,
+        valorArrecadado:valorArrecadado,
+        valorCurso:valorCurso
     };
 
         $('#modalDoacao').append(createModalDoacao(objetoInfoModal));
@@ -261,6 +273,8 @@ let table =`
           <th>Nome do Aluno</th>
           <th>Nome do Curso</th>
           <th>Instituição</th>
+          <th>Valor curso</th>
+          <th> Valor arrecadado</th>
           <th>Ações</th>
           <th hidden>Id Turma</th>
         </tr>
@@ -310,7 +324,7 @@ function createModalDoacao(dados){
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">CC</span>
               </div>
-              <input type="text" class="form-control" id="contaDoador" name="conta" aria-describedby="inputGroupPrepend"
+              <input type="number" class="form-control" id="contaDoador" name="conta" aria-describedby="inputGroupPrepend"
                 required>
               <div class="valid-feedback">
                 Parece bom!
@@ -326,7 +340,7 @@ function createModalDoacao(dados){
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">Ag</span>
               </div>
-              <input type="text" class="form-control" id="agenciaDoador" name="agencia" aria-describedby="inputGroupPrepend"
+              <input type="number" class="form-control" id="agenciaDoador" name="agencia" aria-describedby="inputGroupPrepend"
                 required>
               <div class="valid-feedback">
                 Parece bom!
@@ -342,7 +356,7 @@ function createModalDoacao(dados){
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend">R$</span>
               </div>
-              <input type="text" class="form-control" id="valorDoacao" name="valor" aria-describedby="inputGroupPrepend"
+              <input type="number" class="form-control" id="valorDoacao" name="valor" aria-describedby="inputGroupPrepend"
                 required>
               <div class="valid-feedback">
                 Parece bom!
@@ -356,8 +370,8 @@ function createModalDoacao(dados){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" onClick="fazerDoacao(event, ${dados.idAluno},${dados.idTurma} )" class="btn btn-primary">Enviar</button>
-      </div>
+        <button type="button" onClick="fazerDoacao(event, ${dados.idAluno},${dados.idTurma}, ${dados.valorCurso}, ${dados.valorArrecadado} )" class="btn btn-primary">Enviar</button>
+        </div>
     </div>
   </div>
 </div>
@@ -367,14 +381,20 @@ return modal;
 }
 
 
-function fazerDoacao(event, idAluno, idTurma){
+function fazerDoacao(event, idAluno, idTurma, valorCurso, valorArrecadado){
   event.preventDefault();
+
   let nomeDoador = $('#nomeDoador').val(); 
   let contaDoador = $('#contaDoador').val();
   let agenciaDoador = $('#agenciaDoador').val();
   let valorDoacao = $('#valorDoacao').val();
 
-  var url = 'http://localhost:8080/doacao/realizar_doacao';
+  if(valorDoacao>(valorCurso-valorArrecadado)){
+    $('#valor-invalido').html(modalDoacaoInvalida);
+    $('#alert-doacao').modal('show');
+
+  } else {
+    var url = 'http://localhost:8080/doacao/realizar_doacao';
         let data = { 
         //dados matricula]
         valor:valorDoacao,
@@ -386,6 +406,8 @@ function fazerDoacao(event, idAluno, idTurma){
         dataDoacao: getData()    
   };
         call(url, data);
+  }
+
     }
 
     function call(url, data) {
@@ -419,6 +441,30 @@ function fazerDoacao(event, idAluno, idTurma){
       year = date.getFullYear();
       return [day, month, year].join('/');
 }
+
+
+function modalDoacaoInvalida(){
+  let modal=`<div class="modal" tabindex="-1" id="alert-doacao" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>O valor da doção é maior que o valor restante, coloque outro valor !!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+return modal;
+}
+
 
 
 

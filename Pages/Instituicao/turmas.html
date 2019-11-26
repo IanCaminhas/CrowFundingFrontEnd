@@ -210,21 +210,20 @@
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroupPrepend">Término</span>
-                        </div>
-                        <input type="date" class="form-control" id="dataTermino" name="dataTermino"
-                          aria-describedby="inputGroupPrepend" required>
-                        <div class="valid-feedback">
-                          Parece bom!
-                        </div>
-                        <div class="invalid-feedback">
-                          Digite a data de término.
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupPrepend">Termino</span>
+                          </div>
+                          <input type="date" class="form-control" id="dataTermino" name="dataInicio"
+                            aria-describedby="inputGroupPrepend" required>
+                          <div class="valid-feedback">
+                            Parece bom!
+                          </div>
+                          <div class="invalid-feedback">
+                            Digite a data final.
+                          </div>
                         </div>
                       </div>
-                    </div>
-
                   </div>
                   <hr>
                   <button class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
@@ -241,30 +240,7 @@
             Turmas Cadastradas</div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Nome do Curso</th>
-                    <th>Hora Início</th>
-                    <th>Hora Término</th>
-                    <th>Data Início</th>
-                    <th>Data Prev. Término</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th>Nome do Curso</th>
-                    <th>Hora Início</th>
-                    <th>Hora Término</th>
-                    <th>Data Início</th>
-                    <th>Data Prev. Término</th>
-                    <th>Ações</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                </tbody>
-              </table>
+              <div id="tabela"></div>
             </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -309,6 +285,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="../../js/sb-admin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
 
   <!-- Demo scripts for this page-->
   <script src="../../js/demo/datatables-demo.js"></script>
@@ -343,7 +321,7 @@
 <script>
 window.addEventListener('load', function(){
   let idInstituicao = JSON.parse(sessionStorage.getItem('instituicao'))['id'];
-  let url = `http://localhost:8080/cursos/${idInstituicao}`;
+  let url = `http://localhost:8080/cursos/cursos_instituicao/${idInstituicao}`;
   
   $.get(url, function(data){
     
@@ -383,8 +361,6 @@ function getData(data){
 
   }
 
-
-
 function call(url, data) {
 var request = $.ajax({
   url : url,
@@ -398,7 +374,7 @@ var request = $.ajax({
 
 request.done(function(resp) {
   $("#modalTurma").modal('toggle');
-  
+  location.reload();  
 
 });
 
@@ -410,7 +386,64 @@ request.fail(function(jqXHR, textStatus) {
 
 });
 
+jQuery(function ($) {
+  $("#tabela").html(tableTurmas());
 
+  let idInstituicao = JSON.parse(sessionStorage.getItem('instituicao'))['id'];
+  
+  let url = `http://localhost:8080/turmas/turmas_instituicao/${idInstituicao}`;
+  let tabela = document.querySelector('#table-turmas');
+  let tr = document.createElement('tr');
+
+  $.get(url, function (data) {
+            
+            data.forEach(function(d, index){
+
+                tr.innerHTML = `
+            <td hidden>${d.nomeCurso}</td>
+            <td>${d.horarioInicio}</td>
+            <td>${d.horarioTermino}</td>
+            <td>${d.dataInicio}</td>
+            <td>${d.previsaoTermino}</td>
+            <td>${d.numeroVagas}</td>`;
+          });
+
+
+          tabela.appendChild(tr);
+
+          $('#dataTable').DataTable( {});
+    });
+
+
+
+
+
+
+
+
+
+});
+
+function tableTurmas(){
+
+let tabela=`<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Nome do Curso</th>
+                    <th>Hora Início</th>
+                    <th>Hora Término</th>
+                    <th>Data Início</th>
+                    <th>Data Prev. Término</th>
+                    <th>Número de vagas</th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="table-turmas">
+                </tbody>
+              </table>`;
+              return tabela;
+
+}
 
 </script>
 
@@ -421,3 +454,5 @@ request.fail(function(jqXHR, textStatus) {
     }
     
     </script>
+
+

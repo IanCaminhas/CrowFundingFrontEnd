@@ -215,11 +215,14 @@
                   </div>
                 </div>
                   <button class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
+                  <div id="email-existente"></div>
           </div>
          
         </form>
 
     </div>
+
+    <div id="email-existente"></div>
 
   </body>
 
@@ -285,9 +288,16 @@ $('#btnCadastrar').click(function () {
   });
 
   request.fail(function(jqXHR, textStatus) {
-    console.log("Request failed: " + textStatus);
+    $('#email-existente').html(exibirAlertErroEmailExistente());
   });
 };
+
+function exibirAlertErroEmailExistente(){
+  let alert =`<div class="alert alert-danger" role="alert">
+  email existente, por favor use outro email
+  </div>`;
+return alert;
+}
 
   </script>
 

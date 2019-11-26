@@ -189,24 +189,7 @@
             Cursos Cadastrados</div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Nome do Curso</th>
-                    <th>Valor do Curso</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th>Nome do Curso</th>
-                    <th>Valor do Curso</th>
-                    <th>Ações</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                </tbody>
-              </table>
+              <div id="tabela"></div>
             </div>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -235,6 +218,8 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+  <div id="modalEmenta"></div>
 
  
   <!-- Bootstrap core JavaScript-->
@@ -283,6 +268,94 @@
 
 
 <script>
+
+function createTableCursos(){
+  let tableCursos =`  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th hidden>ementa</th>
+                    <th>Nome do Curso</th>
+                    <th>Valor do Curso</th>
+                    <th>Ementa</th>
+                  </tr>
+                </thead>
+                <tbody id="table-cursos">
+                </tbody>
+              </table>`;
+              return tableCursos;
+}
+
+function modalEmenta(ementa){
+  let modal=`<div class="modal" tabindex="-1" id="alert-ementa" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>${ementa}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+return modal;
+}
+
+
+
+jQuery(function ($) {
+  $("#tabela").html(createTableCursos());
+
+  let idInstituicao = JSON.parse(sessionStorage.getItem('instituicao'))['id'];
+  
+  let url = `http://localhost:8080/cursos/cursos_instituicao/${idInstituicao}`;
+  let tabela = document.querySelector('#table-cursos');
+  let tr = document.createElement('tr');
+
+  $.get(url, function (data) {
+            
+            data.forEach(function(d, index){
+
+                tr.innerHTML = `
+            <td hidden>${d.ementa}</td>
+            <td>${d.nome}</td>
+            <td>${d.valor}</td>
+            <td class="text-center"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alert-ementa">
+            Visualizar
+            </button>
+            </td>`;
+          });
+
+
+          tabela.appendChild(tr);
+
+          $('#dataTable').DataTable( {});
+    });
+
+
+});
+
+$('#dataTable tbody').on( 'click','tr' ,function () {
+         
+    var table = $('#dataTable').DataTable();
+
+    let linhaSelecionada= table.row(this).index();
+    let data = table.rows(linhaSelecionada).data();
+
+    let infoCurso = data[0];
+    let ementa = infoCurso[0];
+
+    $('#modalEmenta').append(modalEmenta(ementa));
+
+});
+
+
  $('#btnCadastrar').click(function () {
       event.preventDefault();
         var url = 'http://localhost:8080/cursos/adiciona';
@@ -310,16 +383,23 @@ var request = $.ajax({
 
 request.done(function(resp) {
   $("#modalCurso").modal('hide');
+  location.reload();
+
 
 
 });
 
 request.fail(function(jqXHR, textStatus) {
-  console.log("Request failed: " + textStatus);
+
 });
 };
 
+
+
+
 </script>
+
+
 
 <script>
     function encerrarSessao(){
@@ -327,4 +407,4 @@ request.fail(function(jqXHR, textStatus) {
     
     }
     
-    </script>
+</script>

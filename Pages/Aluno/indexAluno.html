@@ -107,7 +107,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col">
-        <h4> <span>Nome do Aluno:</span> <span id="nomeAluno"></span> </h4>
+        <h4> <span>Nome do Aluno: </span> <span id="nomeAluno"></span> </h4>
       </div>
       <div class="col">
         <h4> <span>CPF:</span> <span id="cpf"></span> </h4>
@@ -156,9 +156,6 @@
       <div class="row">
         <div class="col">
           <h4> <span>Bairro:</span> <span id="bairro"></span> </h4>
-        </div>
-        <div class="col">
-          <h4> <span>Cidade:</span> <span id="cidade"></span> </h4>
         </div>
       </div>
     </div>
@@ -271,8 +268,26 @@ function encerrarSessao(){
 
 }
 
+</script>
+
+<script>
+jQuery(function ($) {
+
+  document.getElementById('nomeAluno').textContent = JSON.parse(sessionStorage.getItem('aluno'))['nome'];
+  document.getElementById('cpf').textContent = JSON.parse(sessionStorage.getItem('aluno'))['cpf'];
+  document.getElementById('dataNascimento').textContent = JSON.parse(sessionStorage.getItem('aluno'))['dataNascimento'];
+  document.getElementById('telefone').textContent = JSON.parse(sessionStorage.getItem('aluno'))['telefone'];
+  document.getElementById('email').textContent = JSON.parse(sessionStorage.getItem('aluno'))['email'];
+  document.getElementById('renda').textContent = JSON.parse(sessionStorage.getItem('aluno'))['rendaPerCapita'];
+  document.getElementById('descricao').textContent = JSON.parse(sessionStorage.getItem('aluno'))['descricaoPerfil'];
+  document.getElementById('rua').textContent = JSON.parse(sessionStorage.getItem('aluno'))['rua'];
+  document.getElementById('numero').textContent = JSON.parse(sessionStorage.getItem('aluno'))['numeroPropriedade'];
+  document.getElementById('complemento').textContent = JSON.parse(sessionStorage.getItem('aluno'))['complemento'];
+  document.getElementById('bairro').textContent = JSON.parse(sessionStorage.getItem('aluno'))['bairro'];
 
 
 
+
+});
 
 </script>

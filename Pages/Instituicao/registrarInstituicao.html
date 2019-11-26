@@ -59,7 +59,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend">+55</span>
             </div>
-            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone"
+            <input type="number" class="form-control" id="telefone" name="telefone" data-mask="(00) 0000-0000" placeholder="Telefone"
               aria-describedby="inputGroupPrepend" required>
             <div class="valid-feedback">
               Parece bom!
@@ -129,7 +129,7 @@
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupPrepend">Ag</span>
             </div>
-            <input type="text" class="form-control" id="agencia" name="agencia" aria-describedby="inputGroupPrepend"
+            <input type="number" class="form-control" id="agencia" name="agencia" aria-describedby="inputGroupPrepend"
               required>
             <div class="valid-feedback">
               Parece bom!
@@ -178,7 +178,7 @@
         </div>
         <div class="col-md-3 mb-3">
           <label for="numeroPropriedade">Numero</label>
-          <input type="text" class="form-control" id="numeroPropriedade" name="numeroPropriedade" placeholder="Número"
+          <input type="number" class="form-control" id="numeroPropriedade" name="numeroPropriedade" placeholder="Número"
             required>
           <div class="valid-feedback">
             Parece bom!
@@ -221,6 +221,8 @@
         </div>
       </div>
       <button class="btn btn-primary" id="btnCadastrar">Cadastrar</button>
+      <div id="email-existente"></div>
+
   </div>
 
   </form>
@@ -236,6 +238,7 @@
     <script>
     
     $('#btnCadastrar').click(function () {
+
       event.preventDefault();
   var url = 'http://localhost:8080/instituicoes/cadastrar';
 
@@ -283,11 +286,16 @@ request.done(function(resp) {
 });
 
 request.fail(function(jqXHR, textStatus) {
-  console.log("Request failed: " + textStatus);
+  $('#email-existente').html(exibirAlertErroEmailExistente());
 });
 };
 
+function exibirAlertErroEmailExistente(){
+  let alert =`<div class="alert alert-danger" role="alert">
+  email existente, por favor use outro email
+  </div>`;
+return alert;
+}
+
 
     </script>
-
-
