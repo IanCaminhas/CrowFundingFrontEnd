@@ -294,6 +294,8 @@
     </div>
   </div>
 
+  <div id="modalPerfil"></div>
+
   <!-- Bootstrap core JavaScript-->
   <script src="../../vendor/jquery/jquery.min.js"></script>
   <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -359,7 +361,8 @@
                     <th>Data Início</th>
                     <th>Data Prev. Término</th>
                     <th>Status</th>
-                    <th>Detalhes</th>
+                    <th hidden>endereco</th>
+                    <th>Perfil aluno</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
@@ -373,19 +376,52 @@
      jQuery(function ($) {
 
         $("#tabela").html(createTable());
-
-    
-
         let idInstituicao = JSON.parse(sessionStorage.getItem('instituicao'))['id'];
         let url = `http://localhost:8080/matriculas/analise/${idInstituicao}`;
         let tabela = document.querySelector('#table-alunos');
-        let tr = document.createElement('tr');
 
         $.get(url, function (data) {
             //alert(data);
             //let dados = JSON.parse(data);
             
             data.forEach(function(d, index){
+              let tr = document.createElement('tr');
+              if(d.status != 'Em análise pela instituição'){
+                tr.innerHTML = ` 
+            <td hidden>${d.idAluno}</td>
+            <td hidden>${d.idTurma}</td>
+            <td hidden>${d.enderecoAluno}</td>
+            <td hidden>${d.rendaPerCapita}</td>
+            <td hidden>${d.descricaoPerfil}</td>
+            <td hidden>${d.ementa}</td>
+            <td>${d.nomeAluno}</td>
+            <td>${d.nomeCurso}</td>
+            <td>${d.horaInicio}</td>
+            <td>${d.horaTermino}</td>
+            <td>${d.dataInicio}</td>
+            <td>${d.dataTermino}</td>
+            <td>${d.status}</td>
+            <td hidden>${d.endereco}</td>
+            <td>
+            <div class="text-center">
+            <p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alert-perfil-aluno">
+                mais
+            </button>
+            </p>
+            </div>
+            </td>
+            <button type="button" class="btn btn-primary" disabled>
+                Aprovar
+            </button>  
+
+            <button type="button" class="btn btn-danger" disabled>
+                Reprovar
+            </button>
+            <td>
+            </td>      
+  `;
+              } else{
 
                 tr.innerHTML = ` 
             <td hidden>${d.idAluno}</td>
@@ -404,8 +440,8 @@
             <td>
             <div class="text-center">
             <p>
-            <button type="button" id="modal-detalhes-aluno" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                mais
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alert-perfil-aluno">
+                exibir
             </button>
             </p>
             </div>
@@ -420,6 +456,9 @@
             <td>
             </td>      
   `;
+              }
+
+            
             tabela.appendChild(tr);
             
         });
@@ -429,7 +468,6 @@
     });
 
     $('#dataTable tbody').on( 'click','tr' ,function () {
-        
         var table = $('#dataTable').DataTable();
 
         let linhaSelecionada= table.row(this).index();
@@ -440,7 +478,7 @@
         let idAluno = infoMatricula[0];
         let idTurma = infoMatricula[1];
         let endereco = infoMatricula[2];
-        let reda = infoMatricula[3];
+        let renda = infoMatricula[3];
         let perfil = infoMatricula[4];
         let ementa = infoMatricula[5];
         let nomeAluno = infoMatricula[6];
@@ -451,8 +489,43 @@
         let dtTermino = infoMatricula[11];
         let status = infoMatricula[12];
 
+        var objPerfilAluno ={
+          renda: renda,
+          perfil: perfil,
+          endereco: endereco
+        } 
+
+        
+
+        $('#modalPerfil').append(modalPerfilAluno(objPerfilAluno));
+
     });
 
+
+
+    function modalPerfilAluno(objPerfilAluno){
+  let modal=`<div class="modal" tabindex="-1" id="alert-perfil-aluno" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" > Perfil </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Perfil: ${objPerfilAluno.perfil}</p>
+        <p>Renda Percapita: ${objPerfilAluno.renda}</p>
+        <p>Endereco: ${objPerfilAluno.endereco}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+return modal;
+}
      });
 </script>
 
@@ -482,11 +555,11 @@
         });
     
             request.done(function(resp) {
-                console.log("ok");
+              location.reload(); 
         });
     
             request.fail(function(jqXHR, textStatus) {
-                console.log("Request failed: " + textStatus);
+
     });
     };
     </script>
@@ -516,11 +589,13 @@
             });
         
                 request.done(function(resp) {
+                  location.reload(); 
                     
             });
         
                 request.fail(function(jqXHR, textStatus) {
-                    console.log("Request failed: " + textStatus);
+                  location.reload();  
+
         });
         };
         
@@ -531,6 +606,5 @@
             function encerrarSessao(){
               sessionStorage.removeItem('instituicao');
             
-            }
-            
-            </script>
+            }    
+           </script>

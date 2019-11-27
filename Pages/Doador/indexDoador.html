@@ -204,8 +204,8 @@ jQuery(function ($) {
             dados.forEach(function(d, index){
 
             if(d.valorArrecadado <d.valorCurso){
+              let tr = document.createElement('tr');
 
-          
                 tr.innerHTML = `
             <td>${d.idAluno}</td>
             <td>${d.nomeAluno}</td>
@@ -221,6 +221,8 @@ jQuery(function ($) {
             tabela.appendChild(tr);
 
           }
+
+          
 
           });
 
@@ -426,6 +428,8 @@ function fazerDoacao(event, idAluno, idTurma, valorCurso, valorArrecadado){
 
         request.done(function(resp) {
           $('#doeAgora').modal("hide");
+          location.reload();  
+
         });
 
         request.fail(function(jqXHR, textStatus) {
