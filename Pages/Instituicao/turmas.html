@@ -393,34 +393,29 @@ jQuery(function ($) {
   
   let url = `http://localhost:8080/turmas/turmas_instituicao/${idInstituicao}`;
   let tabela = document.querySelector('#table-turmas');
-  let tr = document.createElement('tr');
+  
 
   $.get(url, function (data) {
+    
             
             data.forEach(function(d, index){
+              let tr = document.createElement('tr');
 
                 tr.innerHTML = `
-            <td hidden>${d.nomeCurso}</td>
+            <td>${d.nomeCurso}</td>
             <td>${d.horarioInicio}</td>
             <td>${d.horarioTermino}</td>
             <td>${d.dataInicio}</td>
             <td>${d.previsaoTermino}</td>
             <td>${d.numeroVagas}</td>`;
+            tabela.appendChild(tr);
+
           });
 
 
-          tabela.appendChild(tr);
 
           $('#dataTable').DataTable( {});
     });
-
-
-
-
-
-
-
-
 
 });
 
@@ -442,7 +437,6 @@ let tabela=`<table class="table table-bordered" id="dataTable" width="100%" cell
                 </tbody>
               </table>`;
               return tabela;
-
 }
 
 </script>
@@ -452,7 +446,6 @@ let tabela=`<table class="table table-bordered" id="dataTable" width="100%" cell
       sessionStorage.removeItem('instituicao');
     
     }
-    
-    </script>
+</script>
 
 
